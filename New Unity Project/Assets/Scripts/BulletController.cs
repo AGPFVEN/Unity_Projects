@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    public float bTLimit = 10f;
-    public float bTCollider = 100000000000;
-    public float bulletSpeed = 20f;
+    float bTLimit = 10f;
+    float bTCollider = 100000000000;
+    float bulletSpeed = 20f;
     Collider2D aCollider;
 
     void Start()
