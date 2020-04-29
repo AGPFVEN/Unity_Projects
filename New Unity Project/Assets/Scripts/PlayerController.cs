@@ -12,8 +12,9 @@ public class PlayerController : MonoBehaviour
     //Jump
     float watch_JumpReload;
     float watch_JumpReloadL; //Esta variable hay que quitarla en cuanto tengas score
+    float power_Jump;
     GameObject jumped_GameObject;
-    Rigidbody2D jumped_rb; 
+    Rigidbody2D jumped_rb;
 
     //Modificable Stats
     float speed;
@@ -73,9 +74,11 @@ public class PlayerController : MonoBehaviour
             print(fireRay.transform.transform.name);
             if(jumped_GameObject.GetComponent<Rigidbody2D>() == true)
             {
-                jumped_rb= jumped_GameObject.GetComponent<Rigidbody2D>();
+                jumped_rb = jumped_GameObject.GetComponent<Rigidbody2D>();
+                //power_Jump  
                 jumped_rb.AddForce
-                (new Vector2(jumped_GameObject.transform.position.x-transform.position.x, jumped_GameObject.transform.position.y-transform.position.y));
+                (new Vector2(
+                    jumped_GameObject.transform.position.x-transform.position.x, jumped_GameObject.transform.position.y-transform.position.y).normalized * power_Jump);
             }
             else
             {
