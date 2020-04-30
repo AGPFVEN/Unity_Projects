@@ -5,6 +5,10 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
+    //Pruebas
+    float kk;
+
+    //Base
     public LayerMask wallMask;
     Rigidbody2D rb;
     Transform cannon_Transform;
@@ -32,6 +36,10 @@ public class PlayerController : MonoBehaviour
     float watch_fire;
     float watch_fire_Limit; //Esta variable hay que quitarla en cuanto tengas score
 
+    //Enemy
+    SetHealth health_Enemy_script;
+    float health_Enemy_float;
+
     void Awake()
     {
         //Fire
@@ -50,6 +58,7 @@ public class PlayerController : MonoBehaviour
         //Modificable Stats
         speed = 5f;
         jumpHeight = 2f;
+        power_Jump = 1f;
     }
     void FixedUpdate()
     {
@@ -71,20 +80,27 @@ public class PlayerController : MonoBehaviour
         if (/*watch_JumpReload == watch_JumpReloadL && */jInput >= 1 && fireRay.transform.name != null)
         {
             jumped_GameObject = GameObject.Find(fireRay.transform.name);
-            print(fireRay.transform.transform.name);
-            if(jumped_GameObject.GetComponent<Rigidbody2D>() == true)
+            if(jumped_GameObject.GetComponent<SetHealth>() == true)
             {
+                print(fireRay.transform.name);
                 jumped_rb = jumped_GameObject.GetComponent<Rigidbody2D>();
-                //power_Jump  
+                health_Enemy_script = jumped_GameObject.GetComponent<SetHealth>();
                 jumped_rb.AddForce
                 (new Vector2(
-                    jumped_GameObject.transform.position.x-transform.position.x, jumped_GameObject.transform.position.y-transform.position.y).normalized * power_Jump);
+                    -jumped_GameObject.transform.position.x + transform.position.x, 
+                    -jumped_GameObject.transform.position.y + transform.position.y).normalized
+                    * 10 * ((power_Jump * health_Enemy_script.healthset) / fireRay.distance));
+                kk = 10 *((power_Jump * health_Enemy_script.healthset) / fireRay.distance);
+                print(kk);
             }
-            else
+            else if(fireRay.transform.tag == "Walls")
             {
+                //Default
                 jumped_GameObject = null;
                 jumped_rb = null;
-                return;
+
+                //Jump
+                
             }
         }
         else if (watch_JumpReload == watch_JumpReloadL && jInput >= 1)

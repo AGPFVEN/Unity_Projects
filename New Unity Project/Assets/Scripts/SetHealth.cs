@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class SetHealth : MonoBehaviour
 {
     Rigidbody2D rb;
@@ -13,6 +14,10 @@ public class SetHealth : MonoBehaviour
     }
     void Update()
     {
+        if(healthset <= -rb.mass)
+        {
+            healthset = -rb.mass;
+        }
     }
     public void OnCollisionEnter2D(Collision2D col)
     {
