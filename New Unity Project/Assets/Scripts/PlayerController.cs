@@ -1,26 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class PlayerController : MonoBehaviour
 {
-    //Pruebas
-    float kk;
+    //UI
+    Text pressed_Text;
 
     //Base
     public LayerMask wallMask;
     Rigidbody2D rb;
     Transform cannon_Transform;
 
+    //Fire
+    float watch_FireReload;
+    float watch_FireReloadL; //Esta variable hay que quitarla en cuanto tengas score
+
     //Jump
-    float watch_JumpReload;
-    float watch_JumpReloadL; //Esta variable hay que quitarla en cuanto tengas score
+    float watch_Jump;
+    float watch_Jump_Limit;
     float power_Jump;
     GameObject jumped_GameObject;
     Rigidbody2D jumped_rb;
 
     //Modificable Stats
+    public float healt_this;
     float speed;
     float jumpHeight;
 
@@ -42,6 +48,9 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        //UI
+        pressed_Text = GameObject.Find("Canvas").transform.GetChild(0).GetComponent<Text>();
+
         //Fire
         watch_fire = 0;
         watch_fire_Limit = 1; //Esta variable hay que quitarla en cuanto tengas score
@@ -52,13 +61,13 @@ public class PlayerController : MonoBehaviour
         cannon_Transform_Top = transform.GetChild(0).GetChild(0);
 
         //Reload
-        watch_JumpReload =0;
-        watch_JumpReloadL = 1; //Esta variable hay que quitarla en cuanto tengas score
+        watch_FireReload = 0;
+        watch_FireReloadL = 1; //Esta variable hay que quitarla en cuanto tengas score
 
         //Modificable Stats
         speed = 5f;
         jumpHeight = 2f;
-        power_Jump = 1f;
+        healt_this = 1f;
     }
     void FixedUpdate()
     {
@@ -72,45 +81,52 @@ public class PlayerController : MonoBehaviour
         cannon_Transform.rotation = Quaternion.Euler(0f, 0f, lookAngle + 90f);
 
         //Jump ray
-        RaycastHit2D fireRay =Physics2D.Raycast(cannon_Transform_Top.position, lookDirection.normalized);
+        RaycastHit2D fireRay = Physics2D.Raycast(cannon_Transform_Top.position, lookDirection.normalized);
         Debug.DrawRay(cannon_Transform_Top.position, lookDirection.normalized, Color.green);
 
         //Jump 
         float jInput = Input.GetAxis("Jump");
-        if (/*watch_JumpReload == watch_JumpReloadL && */jInput >= 1 && fireRay.transform.name != null)
+        if (watch_Jump <= 0 && jInput >= 1 && fireRay.transform.name != null)
         {
             jumped_GameObject = GameObject.Find(fireRay.transform.name);
-            if(jumped_GameObject.GetComponent<SetHealth>() == true)
+            if (jumped_GameObject.GetComponent<SetHealth>() == true)
             {
-                print(fireRay.transform.name);
                 jumped_rb = jumped_GameObject.GetComponent<Rigidbody2D>();
                 health_Enemy_script = jumped_GameObject.GetComponent<SetHealth>();
                 jumped_rb.AddForce
                 (new Vector2(
-                    -jumped_GameObject.transform.position.x + transform.position.x, 
+                    -jumped_GameObject.transform.position.x + transform.position.x,
                     -jumped_GameObject.transform.position.y + transform.position.y).normalized
-                    * 10 * ((power_Jump * health_Enemy_script.healthset) / fireRay.distance));
-                kk = 10 *((power_Jump * health_Enemy_script.healthset) / fireRay.distance);
-                print(kk);
+                    * 10 * ((health_Enemy_script.healthset) - healt_this / fireRay.distance)
+                );
             }
-            else if(fireRay.transform.tag == "Walls")
+            else if (jInput >= 1 && fireRay.transform.tag == "Walls")
             {
+                /*HoldJump(power_Jump, jInput);*/
+                print("JUMp");
+                
                 //Default
                 jumped_GameObject = null;
                 jumped_rb = null;
 
                 //Jump
-                
+                if(fireRay.distance <= 1)
+                {
+                    rb.AddForce(-lookDirection.normalized *  14/*meter variable*/, ForceMode2D.Impulse);
+                    watch_Jump = 2;
+                }
+                else
+                {
+                    rb.AddForce(-lookDirection.normalized * 50 / fireRay.distance);
+                    watch_Jump = 2;
+                }
             }
         }
-        else if (watch_JumpReload == watch_JumpReloadL && jInput >= 1)
+        else if (watch_Jump > 0)
         {
-            return;
+            watch_FireReload -= 1 * Time.deltaTime;
         }
-        else if (watch_JumpReload > 0)
-        {
-            watch_JumpReload += 1 * Time.deltaTime;
-        }
+        print(watch_Jump);
 
         //Fire
         if (Input.GetMouseButton(0))
@@ -125,11 +141,24 @@ public class PlayerController : MonoBehaviour
         {
             watch_fire -= 1 * Time.deltaTime;
         }
+        print(watch_Jump);
         //print(fireRay.transform.name);
     }
     void Fire(Transform fire_position_intial, Vector2 vector_Direction, Quaternion fire_rotation, GameObject bullet_func)
     {
         GameObject firedBullet = Instantiate(bullet_func, fire_position_intial.position, fire_rotation);
         firedBullet.GetComponent<Rigidbody2D>().velocity = vector_Direction * 20f;
+    }
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        healt_this -= 0.5f;
+    }
+    void HoldJump(float powerJump, float jinput)
+    {
+        if (jinput >= 1)
+        {
+            powerJump += 1 * Time.deltaTime;
+            HoldJump(powerJump, jinput);
+        }
     }
 }
