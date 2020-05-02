@@ -1,14 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using System;
 
 public class PlayerController : MonoBehaviour
-{
-    //UI
-    Text pressed_Text;
-
+{ 
     //Base
     public LayerMask wallMask;
     Rigidbody2D rb;
@@ -48,9 +44,6 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        //UI
-        pressed_Text = GameObject.Find("Canvas").transform.GetChild(0).GetComponent<Text>();
-
         //Fire
         watch_fire = 0;
         watch_fire_Limit = 1; //Esta variable hay que quitarla en cuanto tengas score
@@ -104,7 +97,7 @@ public class PlayerController : MonoBehaviour
             {
                 /*HoldJump(power_Jump, jInput);*/
                 print("JUMp");
-                
+
                 //Default
                 jumped_GameObject = null;
                 jumped_rb = null;
@@ -118,7 +111,7 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     rb.AddForce(-lookDirection.normalized * 50 / fireRay.distance);
-                    watch_Jump = 2;
+                    watch_Jump  = 2;
                 }
             }
         }
@@ -126,7 +119,6 @@ public class PlayerController : MonoBehaviour
         {
             watch_FireReload -= 1 * Time.deltaTime;
         }
-        print(watch_Jump);
 
         //Fire
         if (Input.GetMouseButton(0))
@@ -141,6 +133,7 @@ public class PlayerController : MonoBehaviour
         {
             watch_fire -= 1 * Time.deltaTime;
         }
+
         print(watch_Jump);
         //print(fireRay.transform.name);
     }
