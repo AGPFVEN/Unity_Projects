@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     //Jump
     float watch_Jump;
     float watch_Jump_Limit;
-    float power_Jump;
+    public float power_Jump;
     GameObject jumped_GameObject;
     Rigidbody2D jumped_rb;
 
