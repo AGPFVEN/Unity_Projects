@@ -7,16 +7,20 @@ public class Interfaz : MonoBehaviour
     //This UI
     GameObject powerJump_UI;
     Text powerJump_text;
+    GameObject watchJump_UI;
+    Text watchJump_text;
 
     //Player
     GameObject player_GO;
     PlayerController player_script;
     void Awake()
     {
-        //This set up
-        powerJump_UI = this.transform.GetChild(0).gameObject;
+        //This Set Up
+        powerJump_UI = transform.GetChild(0).gameObject; //Power Jump
         powerJump_text = powerJump_UI.GetComponent<Text>();
-        powerJump_text.text = "Hola";
+
+        watchJump_UI = transform.GetChild(1).gameObject; //Watch 
+        watchJump_text = watchJump_UI.GetComponent<Text>();
 
         //Player set up
         player_GO = GameObject.Find("Player");
@@ -24,6 +28,7 @@ public class Interfaz : MonoBehaviour
     }
     void Update()
     {
-        powerJump_text.text = player_script.power_Jump.ToString();
+        powerJump_text.text = "this is your jump power: " + player_script.power_Jump.ToString();
+        watchJump_text.text = "this is your Watch: " + player_script.watch_Jump.ToString();
     }
 }

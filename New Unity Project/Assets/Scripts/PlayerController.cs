@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 public class PlayerController : MonoBehaviour
-{ 
+{
     //Base
     public LayerMask wallMask;
     Rigidbody2D rb;
@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     float watch_FireReloadL; //Esta variable hay que quitarla en cuanto tengas score
 
     //Jump
-    float watch_Jump;
+    public float watch_Jump;
     float watch_Jump_Limit;
     public float power_Jump;
     GameObject jumped_GameObject;
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         jumpHeight = 2f;
         healt_this = 1f;
     }
-    void FixedUpdate()
+    void Update()
     {
         //Horizontal movement
         float hInput = Input.GetAxis("Horizontal");
@@ -73,59 +73,12 @@ public class PlayerController : MonoBehaviour
         lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
         cannon_Transform.rotation = Quaternion.Euler(0f, 0f, lookAngle + 90f);
 
-        //Jump ray
-        RaycastHit2D fireRay = Physics2D.Raycast(cannon_Transform_Top.position, lookDirection.normalized);
-        Debug.DrawRay(cannon_Transform_Top.position, lookDirection.normalized, Color.green);
-
-        //Jump 
-        float jInput = Input.GetAxis("Jump");
-        if (watch_Jump <= 0 && jInput >= 1 && fireRay.transform.name != null)
-        {
-            jumped_GameObject = GameObject.Find(fireRay.transform.name);
-            if (jumped_GameObject.GetComponent<SetHealth>() == true)
-            {
-                jumped_rb = jumped_GameObject.GetComponent<Rigidbody2D>();
-                health_Enemy_script = jumped_GameObject.GetComponent<SetHealth>();
-                jumped_rb.AddForce
-                (new Vector2(
-                    -jumped_GameObject.transform.position.x + transform.position.x,
-                    -jumped_GameObject.transform.position.y + transform.position.y).normalized
-                    * 10 * ((health_Enemy_script.healthset) - healt_this / fireRay.distance)
-                );
-            }
-            else if (jInput >= 1 && fireRay.transform.tag == "Walls")
-            {
-                /*HoldJump(power_Jump, jInput);*/
-                print("JUMp");
-
-                //Default
-                jumped_GameObject = null;
-                jumped_rb = null;
-
-                //Jump
-                if(fireRay.distance <= 1)
-                {
-                    rb.AddForce(-lookDirection.normalized *  14/*meter variable*/, ForceMode2D.Impulse);
-                    watch_Jump = 2;
-                }
-                else
-                {
-                    rb.AddForce(-lookDirection.normalized * 50 / fireRay.distance);
-                    watch_Jump  = 2;
-                }
-            }
-        }
-        else if (watch_Jump > 0)
-        {
-            watch_FireReload -= 1 * Time.deltaTime;
-        }
-
         //Fire
         if (Input.GetMouseButton(0))
         {
             if (watch_fire <= 0)
             {
-                Fire(transform, lookDirection.normalized, Quaternion.Euler(0f, 0f, lookAngle - 90f), bullet_Gameobject);
+                Fire(cannon_Transform_Top, lookDirection.normalized, Quaternion.Euler(0f, 0f, lookAngle - 90f), bullet_Gameobject);
                 watch_fire = watch_fire_Limit;
             }
         }
@@ -134,24 +87,70 @@ public class PlayerController : MonoBehaviour
             watch_fire -= 1 * Time.deltaTime;
         }
 
-        print(watch_Jump);
-        //print(fireRay.transform.name);
+        //Jump ray
+        RaycastHit2D fireRay = Physics2D.Raycast(cannon_Transform_Top.position, lookDirection.normalized);
+        Debug.DrawRay(cannon_Transform_Top.position, lookDirection.normalized, Color.green);
+
+        //Jump
+        if (Input.GetKey(KeyCode.Space) && watch_Jump <= 0)
+        {
+            //Increse Force
+            power_Jump += 1 * Time.deltaTime;
+        }
+        else if (!Input.GetKey(KeyCode.Space) && watch_Jump <= 0 && fireRay.transform != null)
+        {
+            jumped_GameObject = GameObject.Find(fireRay.transform.name);
+            if (jumped_GameObject.GetComponent<SetHealth>() != null && power_Jump > 0)
+            {
+                //Jump Enemy
+                jumped_rb = jumped_GameObject.GetComponent<Rigidbody2D>();
+                health_Enemy_script = jumped_GameObject.GetComponent<SetHealth>();
+                if (power_Jump > 0)
+                {
+                    jumped_rb.AddForce
+                    (new Vector2(
+                        -jumped_GameObject.transform.position.x + transform.position.x,
+                        -jumped_GameObject.transform.position.y + transform.position.y).normalized
+                        * power_Jump * 2 * ((health_Enemy_script.healthset) - healt_this / fireRay.distance)
+                    );
+                }
+            }
+            if (power_Jump > 0 && (jumped_GameObject.tag == "Walls" || jumped_GameObject.GetComponent<SetHealth>() == null))
+            {
+                //Normal Jump
+                jumped_GameObject = null;
+                jumped_rb = null;
+
+                if (fireRay.distance <= 1)
+                {
+                    rb.AddForce(-lookDirection.normalized * 5 * power_Jump, ForceMode2D.Impulse);
+                    watch_Jump = 2;
+                    power_Jump = 0;
+                }
+            }
+        }
+
+        //Sand watch
+        watch_Jump -= 1 * Time.deltaTime;
     }
     void Fire(Transform fire_position_intial, Vector2 vector_Direction, Quaternion fire_rotation, GameObject bullet_func)
     {
         GameObject firedBullet = Instantiate(bullet_func, fire_position_intial.position, fire_rotation);
         firedBullet.GetComponent<Rigidbody2D>().velocity = vector_Direction * 20f;
     }
-    void OnCollisionEnter2D(Collision2D coll)
+    float HoldJump(float powerJump)
     {
-        healt_this -= 0.5f;
-    }
-    void HoldJump(float powerJump, float jinput)
-    {
-        if (jinput >= 1)
+
+        if (Input.GetKey(KeyCode.Space) == true)
         {
             powerJump += 1 * Time.deltaTime;
-            HoldJump(powerJump, jinput);
+            HoldJump(powerJump);
+            return 0;
         }
+        else
+        {
+            return powerJump;
+        }
+
     }
 }
