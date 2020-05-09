@@ -1,26 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Tester : MonoBehaviour
 {
-    float kk;
-    // Start is called before the first frame update
+    public BoxCollider2D lav;
+
     void Start()
     {
-        kk = 0; 
+        
     }
-
-    // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.A))
+    }
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if(col.gameObject.tag == "Player")
         {
-            kk += 1 * Time.deltaTime;
-        }
-        else
-        {
-            kk = 0;
+            SceneManager.LoadScene("EndGame");
         }
     }
 }

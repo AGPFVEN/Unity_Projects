@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
         //Mira
         if (fireRay.point == null)
         {
-            mira_Gameobject.GetComponent<SpriteRenderer>().enabled = false;
+            mira_Gameobject.transform.position = new Vector2(-7, 6);
             mira_Gameobject.SetActive(false);
         }
         else if (fireRay.point != null)
@@ -172,6 +172,5 @@ public class PlayerController : MonoBehaviour
         {
             return powerJump;
         }
-
     }
 }

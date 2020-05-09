@@ -23,6 +23,7 @@ namespace GameServer
 
             private readonly int id;
             private NetworkStream stream;
+            private Packet receivedData;
             private byte[] receiveBuffer;
             public TCP(int _id)
             {
@@ -36,6 +37,7 @@ namespace GameServer
 
                 stream = socket.GetStream();
 
+                receivedData = new Packet();
                 receiveBuffer = new byte[dataBufferSize];
 
                 stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
@@ -69,6 +71,7 @@ namespace GameServer
                     byte[] _data = new byte[_byteLength];
                     Array.Copy(receiveBuffer, _data, _byteLength);
 
+                    receivedData.Reset(HandleData(_data));
                     //TODO: handle data
                     stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
                 }
