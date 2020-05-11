@@ -4,23 +4,26 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Interfaz : MonoBehaviour
 {
+    //This Script
+    float score;
     //This UI
     GameObject powerJump_UI;
     Text powerJump_text;
     GameObject watchJump_UI;
     Text watchJump_text;
+    GameObject score_UI;
+    Text score_text;
 
     //Player
     GameObject player_GO;
     PlayerController player_script;
     void Awake()
     {
+        //
         //This Set Up
         powerJump_UI = transform.GetChild(0).gameObject; //Power Jump
-        powerJump_text = powerJump_UI.GetComponent<Text>();
-
         watchJump_UI = transform.GetChild(1).gameObject; //Watch 
-        watchJump_text = watchJump_UI.GetComponent<Text>();
+        score_UI = transform.GetChild(2).gameObject;     //Score
 
         //Player set up
         player_GO = GameObject.Find("Player");
@@ -28,7 +31,8 @@ public class Interfaz : MonoBehaviour
     }
     void Update()
     {
-        powerJump_text.text = "this is your jump power: " + player_script.power_Jump.ToString();
-        watchJump_text.text = "this is your Watch: " + player_script.watch_Jump.ToString();
+        powerJump_UI.GetComponent<Text>().text = "this is your jump power: " + player_script.power_Jump.ToString();
+        score_UI.GetComponent<Text>().text = "Score: " + score.ToString();
+        //watchJump_UI.GetComponent<Text>().text = "this is your Watch: " + player_script.watch_Jump.ToString();
     }
 }

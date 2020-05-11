@@ -15,8 +15,9 @@ public class PlayerController : MonoBehaviour
     float watch_FireReloadL; //Esta variable hay que quitarla en cuanto tengas score
 
     //Jump
-    public float watch_Jump;
-    float watch_Jump_Limit;
+    float watch_Jump;
+    public float watch_Jump_bool;
+    float watch_Jump_Limit; 
     public float power_Jump;
     GameObject jumped_GameObject;
     Rigidbody2D jumped_rb;
