@@ -5,7 +5,8 @@ using UnityEngine.UI;
 public class Interfaz : MonoBehaviour
 {
     //This Script
-    float score;
+    public float score;
+
     //This UI
     GameObject powerJump_UI;
     Text powerJump_text;
@@ -31,8 +32,20 @@ public class Interfaz : MonoBehaviour
     }
     void Update()
     {
+        //Jump power
         powerJump_UI.GetComponent<Text>().text = "this is your jump power: " + player_script.power_Jump.ToString();
+
+        //Score
         score_UI.GetComponent<Text>().text = "Score: " + score.ToString();
-        //watchJump_UI.GetComponent<Text>().text = "this is your Watch: " + player_script.watch_Jump.ToString();
+
+        //Jump Watch
+        if (player_script.watch_Jump <= 0)
+        {
+            watchJump_UI.GetComponent<Text>().text = "Your jump is ready";
+        }
+        else if (player_script.watch_Jump > 0)
+        {
+            watchJump_UI.GetComponent<Text>().text = "Your jump is NOT ready";
+        }
     }
 }

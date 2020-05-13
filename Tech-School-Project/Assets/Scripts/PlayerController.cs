@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     float watch_FireReloadL; //Esta variable hay que quitarla en cuanto tengas score
 
     //Jump
-    float watch_Jump;
+    public float watch_Jump;
     public float watch_Jump_bool;
     float watch_Jump_Limit; 
     public float power_Jump;
@@ -26,6 +26,10 @@ public class PlayerController : MonoBehaviour
     public float healt_this;
     float speed;
     float jumpHeight;
+
+    //Health
+    GameObject health_gameobject;
+    public float health_this;
 
     //Cannon rotation
     Vector2 lookDirection;
@@ -68,9 +72,20 @@ public class PlayerController : MonoBehaviour
 
         //Mira set up
         mira_Gameobject = transform.GetChild(1).gameObject;
+
+        //Health
+        healt_this = 0;
+        health_gameobject = transform.GetChild(2).gameObject;
     }
     void Update()
     {
+        //Health
+        if (health_this == 1)
+        {
+            Destroy(gameObject);
+        }
+        health_gameobject.transform.localScale = new Vector3(health_this, health_this, 0f);
+
         //Horizontal movement
         float hInput = Input.GetAxis("Horizontal");
         rb.AddForce(new Vector2(hInput * speed, 0));
@@ -86,6 +101,7 @@ public class PlayerController : MonoBehaviour
             if (watch_fire <= 0)
             {
                 Fire(cannon_Transform_Top, lookDirection.normalized, Quaternion.Euler(0f, 0f, lookAngle - 90f), bullet_Gameobject);
+                rb.AddForce(-lookDirection.normalized * 3, ForceMode2D.Impulse);
                 watch_fire = watch_fire_Limit;
             }
         }
@@ -101,7 +117,7 @@ public class PlayerController : MonoBehaviour
         //Mira
         if (fireRay.point == null)
         {
-            mira_Gameobject.transform.position = new Vector2(-7, 6);
+            mira_Gameobject.transform.position = new Vector2(-22, 22);
             mira_Gameobject.SetActive(false);
         }
         else if (fireRay.point != null)
@@ -114,7 +130,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && watch_Jump <= 0)
         {
             //Increse Force
-            power_Jump += 1 * Time.deltaTime;
+            power_Jump += 3 * Time.deltaTime;
         }
         else if (!Input.GetKey(KeyCode.Space) && watch_Jump <= 0 && fireRay.transform != null)
         {

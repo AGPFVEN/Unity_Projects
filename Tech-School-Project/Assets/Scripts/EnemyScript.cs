@@ -4,22 +4,25 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
-    Spawn spawn_Script;
+    Interfaz spawn_Script;
+    PlayerController player_script;
     void Awake()
     {
-        spawn_Script = GameObject.Find("Spawn").GetComponent<Spawn>();
+        spawn_Script = GameObject.Find("Canvas").GetComponent<Interfaz>();
+        player_script = GameObject.Find("Player").GetComponent<PlayerController>();
     }
     void OnCollisionEnter2D(Collision2D coll)
     {
-        print("hit");
         if (coll.gameObject.tag == "Bullet")
         {
             spawn_Script.score += 1;
             Destroy(this.gameObject);
         }
-        else if (coll.gameObject.tag != "Bullet")
+        else if (coll.gameObject.tag == "player")
         {
-            Destroy(gameObject);
+            spawn_Script.score += 1;
+            player_script.health_this += 0.2f;
+            Destroy(this.gameObject);
         }
     }
 }
