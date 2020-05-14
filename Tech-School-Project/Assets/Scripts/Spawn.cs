@@ -29,16 +29,18 @@ public class Spawn : MonoBehaviour
     float clock;
     float _Timer_Spawn;
 
-    //Score
-    public int score;
+    //Score (connection with Interfaz)
+    float score_spawn;
+    Interfaz _canvas_script;
 
-    //Prefabs set up
+    //Prefabs Enemy set up
     public GameObject enemyPrefab_GameObject;
     GameObject enemy_GameObject;
     Vector3 _Spawn_Direction;
     Rigidbody2D enemy_rb;
 
-    //Score
+    //Prefabs health giver set up
+    public GameObject _healthGiver_Prefab;
 
     void Awake()
     {
@@ -57,7 +59,8 @@ public class Spawn : MonoBehaviour
         _Timer_Spawn = 0;
 
         //Score
-        score = 0;
+        _canvas_script = GameObject.Find("Canvas").GetComponent<Interfaz>();
+        score_spawn = _canvas_script.score;
     }
     void FixedUpdate()
     {
@@ -131,8 +134,33 @@ public class Spawn : MonoBehaviour
                 );
             }
             //Move
-            enemy_GameObject.GetComponent<Rigidbody2D>().velocity =
-            -_Spawn_Direction * 5 * Time.deltaTime; //DEPENDER DE SCORE
+            if (score_spawn <= 5)
+            {
+                enemy_GameObject.GetComponent<Rigidbody2D>().velocity =
+                -_Spawn_Direction * 5 * Time.deltaTime;
+            }
+            else if (score_spawn > 100)
+            {
+                print("x10");
+                enemy_GameObject.GetComponent<Rigidbody2D>().velocity =
+                -_Spawn_Direction * score_spawn * Time.deltaTime * 10; 
+            }
+            else if (score_spawn > 50)
+            {
+                enemy_GameObject.GetComponent<Rigidbody2D>().velocity =
+                -_Spawn_Direction * score_spawn * Time.deltaTime * 4; 
+            }
+            else if (score_spawn > 30)
+            {
+                enemy_GameObject.GetComponent<Rigidbody2D>().velocity =
+                -_Spawn_Direction * score_spawn * Time.deltaTime * 2; 
+            }
+            else if (score_spawn > 5)
+            {
+                enemy_GameObject.GetComponent<Rigidbody2D>().velocity =
+                -_Spawn_Direction * score_spawn * Time.deltaTime; 
+            }
+            // else if (score_spawn >)
 
             //Timer reset
             _Timer_Spawn = 0;

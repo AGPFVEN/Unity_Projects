@@ -8,6 +8,8 @@ TagManager:
   - Bullet
   - Lava
   - player
+  - GainHeath
+  - Enemy
   layers:
   - Default
   - TransparentFX

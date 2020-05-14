@@ -17,13 +17,12 @@ public class PlayerController : MonoBehaviour
     //Jump
     public float watch_Jump;
     public float watch_Jump_bool;
-    float watch_Jump_Limit; 
+    float watch_Jump_Limit;
     public float power_Jump;
     GameObject jumped_GameObject;
     Rigidbody2D jumped_rb;
 
     //Modificable Stats
-    public float healt_this;
     float speed;
     float jumpHeight;
 
@@ -50,7 +49,7 @@ public class PlayerController : MonoBehaviour
     //Mira
     GameObject mira_Gameobject;
 
-    void Awake()
+    void Start()
     {
         //Fire
         watch_fire = 0;
@@ -68,19 +67,18 @@ public class PlayerController : MonoBehaviour
         //Modificable Stats
         speed = 5f;
         jumpHeight = 2f;
-        healt_this = 1f;
 
         //Mira set up
         mira_Gameobject = transform.GetChild(1).gameObject;
 
         //Health
-        healt_this = 0;
+        health_this = 0;
         health_gameobject = transform.GetChild(2).gameObject;
     }
     void Update()
     {
         //Health
-        if (health_this == 1)
+        if (health_this >= 1)
         {
             Destroy(gameObject);
         }
@@ -146,7 +144,7 @@ public class PlayerController : MonoBehaviour
                     (new Vector2(
                         -jumped_GameObject.transform.position.x + transform.position.x,
                         -jumped_GameObject.transform.position.y + transform.position.y).normalized
-                        * power_Jump * 2 * ((health_Enemy_script.healthset) - healt_this / fireRay.distance)
+                        * power_Jump * 2 * ((health_Enemy_script.healthset) - health_this / fireRay.distance)
                     );
                 }
             }
@@ -166,7 +164,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //Sand watch
-        if(watch_Jump > 0)
+        if (watch_Jump > 0)
         {
             watch_Jump -= 1 * Time.deltaTime;
         }
@@ -190,4 +188,26 @@ public class PlayerController : MonoBehaviour
             return powerJump;
         }
     }
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        // if (coll.gameObject.tag == "GainHealth")
+        // {
+        //     health_this -= 0.2f;
+        // }
+        // if (coll.gameObject.tag == "Enemy")
+        // {
+        //     health_this += 0.2f;
+        // }
+        // if (coll.gameObject.tag == "Lava")
+        // {
+        //     health_this += .5f * Time.deltaTime;
+        // }
+    }
+    // void OnCollisionStay2D(Collision2D coll)
+    // {
+    //     if (coll.gameObject.tag == "Lava")
+    //     {
+    //         health_this += .5f * Time.deltaTime;
+    //     }
+    // }
 }
