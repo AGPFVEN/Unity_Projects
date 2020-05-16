@@ -4,29 +4,36 @@ using UnityEngine;
 
 public class AnticheatIngame : MonoBehaviour
 {
-    ScenaryChanger scenaryscript;
+    public int sign;
     float trap;
-    void Start()
+    Rigidbody2D rb;
+    void Awake()
     {
-        scenaryscript = GameObject.Find("Spawn").GetComponent<ScenaryChanger>();
+        rb = GetComponent<Rigidbody2D>();
     }
     void FixedUpdate()
     {
-        if (trap >= 1)
+        transform.rotation = Quaternion.Euler(0, 0, sign * 2 * trap);
+        trap -= 1 * Time.deltaTime;
+
+        if (trap <= 0)
         {
-            print("nope");
-            
+            trap = 0;
         }
     }
-    void OnTriggerStay2D(Collider2D coll)
+    void OnCollisionStay2D(Collision2D coll)
     {
-        if (coll.name == "Player")
+        if (coll.gameObject.name == "Player")
         {
-            trap += 1 * Time.deltaTime;
+            trap += 5 * Time.deltaTime;
+        }
+        else if (coll.gameObject.name != "Player")
+        {
+            trap -= 1 * Time.deltaTime;
         }
     }
-    void OnTriggerExit2D(Collider2D coll)
+    void OnCollisionExit2D(Collision2D coll)
     {
-        trap = 0;
+        trap -= 1 * Time.deltaTime;
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7615962678505316526}
   - component: {fileID: 7615962678505316524}
   - component: {fileID: 7615962678505316525}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lava
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,4 +119,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e176188cd3adf4f498e3b61a6fc3b0fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lav: {fileID: 7615962678505316524}
