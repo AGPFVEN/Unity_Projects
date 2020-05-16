@@ -60,7 +60,7 @@ public class Spawn : MonoBehaviour
 
         //Score
         _canvas_script = GameObject.Find("Canvas").GetComponent<Interfaz>();
-        score_spawn = _canvas_script.score;
+        score_spawn = _canvas_script.score;  //TODO: Quit variable
     }
     void FixedUpdate()
     {

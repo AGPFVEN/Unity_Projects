@@ -6,18 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class Tester : MonoBehaviour
 {
-    public BoxCollider2D lav;
+    BoxCollider2D lav;
 
-    void Start()
+    void Awake()
     {
-        
-    }
-    void Update()
-    {
+        lav = gameObject.GetComponent<BoxCollider2D>();
     }
     void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.tag == "Player")
+        if(col.gameObject.tag == "player")
         {
             SceneManager.LoadScene("EndGame");
         }
