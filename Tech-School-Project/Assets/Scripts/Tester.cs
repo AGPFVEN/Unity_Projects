@@ -14,9 +14,18 @@ public class Tester : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.tag == "player")
+        if (col.gameObject.tag == "player")
         {
-            SceneManager.LoadScene("EndGame");
+            if (PlayerPrefs.HasKey("Scoreboard") == false)
+            {
+                SceneManager.LoadScene("EndGame");
+                print("nope");
+            }
+            else if (PlayerPrefs.HasKey("Scoreboard") == true)
+            {
+                SceneManager.LoadScene(PlayerPrefs.GetInt("Scoreboard"));
+                print(PlayerPrefs.GetInt("Scoreboard"));
+            }
         }
     }
 }

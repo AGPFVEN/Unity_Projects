@@ -77,9 +77,9 @@ public class ScenaryChanger : MonoBehaviour
             if (wallmini_under_right.position.x > -7f)
             {
                 wallmini_under_right_rb.AddForce
-                (new Vector2(-6.5f - wallmini_under_right.position.x, -2.6f - wallmini_under_right.position.y).normalized * 900,ForceMode2D.Force);
+                (new Vector2(-6.5f - wallmini_under_right.position.x, -2.6f - wallmini_under_right.position.y).normalized * 250,ForceMode2D.Force);
             }
-            else if (wallmini_under_right.position.x <= -6.85f)
+            else if (wallmini_under_right.position.x <= -6.5f)
             {
                 wallmini_under_right_rb.constraints = 
                 RigidbodyConstraints2D.FreezeRotation

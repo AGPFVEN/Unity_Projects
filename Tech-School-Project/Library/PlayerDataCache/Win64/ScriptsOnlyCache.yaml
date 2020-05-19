@@ -1,13 +1,23 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - AnticheatIngame
     - BulletController
+    - EndGame
+    - EnemyScript
+    - GainHealth
     - Interfaz
     - MenuManager
     - PlayerController
+    - ScenaryChanger
     - SetHealth
     - Spawn
     - Tester
+    Unity.TextMeshPro.dll:
+    - TMPro.TMP_FontAsset
+    - TMPro.TMP_Settings
+    - TMPro.TMP_SpriteAsset
+    - TMPro.TMP_StyleSheet
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
@@ -33,13 +43,47 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 20
       Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
     - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 9394}
+    - Class: 114
+      Script: {instanceID: 9396}
+    - Class: 114
+      Script: {instanceID: 9402}
+    - Class: 114
+      Script: {instanceID: 9408}
+    - Class: 114
+      Script: {instanceID: 9416}
+    - Class: 114
+      Script: {instanceID: 9452}
+    - Class: 114
+      Script: {instanceID: 9454}
+    - Class: 114
+      Script: {instanceID: 9644}
+    - Class: 114
+      Script: {instanceID: 16074}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
     - Class: 157
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
       Script: {instanceID: 0}
     Assets/Scenes/Juego_1.unity:
     - Class: 1
@@ -65,27 +109,35 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9374}
+      Script: {instanceID: 9396}
     - Class: 114
-      Script: {instanceID: 9380}
+      Script: {instanceID: 9402}
     - Class: 114
-      Script: {instanceID: 9386}
+      Script: {instanceID: 9408}
     - Class: 114
-      Script: {instanceID: 9430}
+      Script: {instanceID: 9452}
     - Class: 114
-      Script: {instanceID: 9432}
+      Script: {instanceID: 9454}
     - Class: 114
-      Script: {instanceID: 9620}
+      Script: {instanceID: 9642}
     - Class: 114
-      Script: {instanceID: 9850}
+      Script: {instanceID: 9872}
     - Class: 114
-      Script: {instanceID: 9916}
+      Script: {instanceID: 9890}
     - Class: 114
-      Script: {instanceID: 10112}
+      Script: {instanceID: 9940}
     - Class: 114
-      Script: {instanceID: 10178}
+      Script: {instanceID: 9976}
     - Class: 114
-      Script: {instanceID: 10260}
+      Script: {instanceID: 10138}
+    - Class: 114
+      Script: {instanceID: 10204}
+    - Class: 114
+      Script: {instanceID: 10218}
+    - Class: 114
+      Script: {instanceID: 10288}
+    - Class: 114
+      Script: {instanceID: 10476}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -115,28 +167,40 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
-    - Class: 114
-      Script: {instanceID: 9372}
-    - Class: 114
-      Script: {instanceID: 9374}
-    - Class: 114
-      Script: {instanceID: 9380}
-    - Class: 114
-      Script: {instanceID: 9386}
+    - Class: 109
+      Script: {instanceID: 0}
     - Class: 114
       Script: {instanceID: 9394}
     - Class: 114
       Script: {instanceID: 9396}
     - Class: 114
-      Script: {instanceID: 9430}
+      Script: {instanceID: 9402}
     - Class: 114
-      Script: {instanceID: 9432}
+      Script: {instanceID: 9408}
     - Class: 114
-      Script: {instanceID: 9622}
+      Script: {instanceID: 9416}
+    - Class: 114
+      Script: {instanceID: 9418}
+    - Class: 114
+      Script: {instanceID: 9452}
+    - Class: 114
+      Script: {instanceID: 9454}
+    - Class: 114
+      Script: {instanceID: 9644}
+    - Class: 114
+      Script: {instanceID: 9764}
+    - Class: 114
+      Script: {instanceID: 10060}
+    - Class: 114
+      Script: {instanceID: 10070}
+    - Class: 114
+      Script: {instanceID: 10400}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -610,7 +674,7 @@ ScriptsOnlyBuild:
     className: BulletController
   - hash:
       serializedVersion: 2
-      Hash: 1e2595e8e892880aa0f31ce12d699b1d
+      Hash: bc030776f51756fd839258f34cfdb552
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MenuManager
@@ -695,6 +759,12 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GainHealth
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.Analytics.Editor.dll
     namespaceName: UnityEditor.Analytics
     className: AnalyticsEventTrackerEditor
@@ -706,7 +776,7 @@ ScriptsOnlyBuild:
     className: TMP_SpriteAnimator
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: ac7cfbc90220c648cf10b18c3e4f934c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Interfaz
@@ -716,6 +786,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TextContainer
+  - hash:
+      serializedVersion: 2
+      Hash: 80abc514ba0b28df6f640f6cc587ffc2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AnticheatIngame
   - hash:
       serializedVersion: 2
       Hash: 3f8d7b92a6be3c715e55d5cfa7cc8384
@@ -784,7 +860,7 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
-      Hash: 28285c2e90ea4f98dccb0d7ec06d194b
+      Hash: 9f5f3184ef9de16a29d536fb212bdbc6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController
@@ -802,7 +878,7 @@ ScriptsOnlyBuild:
     className: DataPrivacyButton
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 339cd1e52e5a887debce4bc3941a81d8
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Spawn
@@ -814,7 +890,13 @@ ScriptsOnlyBuild:
     className: AudioTrack
   - hash:
       serializedVersion: 2
-      Hash: 71c3697b71929cf4aaccbc9c79b8ef81
+      Hash: 94403909c4307b544fe58c1337e533e4
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ScenaryChanger
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Tester
@@ -838,6 +920,12 @@ ScriptsOnlyBuild:
     className: TMP_StyleSheet
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MoveAss
+  - hash:
+      serializedVersion: 2
       Hash: 5372ed2ce39229b1ac910757999a8be2
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -848,6 +936,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_ColorGradient
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EnemyScript
   - hash:
       serializedVersion: 2
       Hash: 8649814970b42d345b89944b862453cc
@@ -866,9 +960,15 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 3010a2240758307b8f98d1915d9b858c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EndGame
   platform: 19
   scenePathNames:
   - Assets/Scenes/Welcome(now).unity
   - Assets/Scenes/Juego_1.unity
   - Assets/Scenes/EndGame.unity
-  playerPath: D:/Users/Usuario/Proyecto-0-Coop/Tech-School-Project/Buidls/Tech-School-Project.exe
+  playerPath: D:/Users/Usuario/Proyecto-0-Coop/Tech-School-Project/_Builds/Tech-School-Project.exe
