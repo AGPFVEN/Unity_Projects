@@ -11,11 +11,11 @@ public class EndGame : MonoBehaviour
 
     //Variables actuales 
     string username;
-    float userscore;
+    int userscore;
 
     //Listas
     string[] usernames;
-    float[] userscores;
+    int[] userscores;
 
     //Contador
     int count;
@@ -29,7 +29,7 @@ public class EndGame : MonoBehaviour
         menuManager = GameObject.Find("SceneManager").GetComponent<MenuManager>();
 
         //Arrays
-        userscores = new float[9];
+        userscores = new int[9];
         usernames = new string[9];
 
         //Check if there is info already
@@ -38,7 +38,7 @@ public class EndGame : MonoBehaviour
             //Set up Arrays of floats
             for (int i = 0; i < 9; i++)
             {
-                userscores[i] = float.Parse(GameObject.Find("Canvas").transform.GetChild(i + 1).transform.GetChild(0).GetComponent<Text>().text);
+                userscores[i] = int.Parse(GameObject.Find("Canvas").transform.GetChild(i + 1).transform.GetChild(0).GetComponent<Text>().text);
             }
 
             //Set up Arrays of strings
@@ -47,28 +47,40 @@ public class EndGame : MonoBehaviour
                 usernames[i] = GameObject.Find("Canvas").transform.GetChild(i + 1).transform.GetChild(1).GetComponent<Text>().text;
             }
         }
+        if (PlayerPrefs.HasKey("List") == true)
+        {
+            //Set up Arrays of floats
+            for (int i = 0; i < 9; i++)
+            {
+                GameObject.Find("Canvas").transform.GetChild(i + 1).transform.GetChild(0).GetComponent<Text>().text = PlayerPrefs.GetInt($"userscores{i}").ToString();
+            }
+
+            //Set up Arrays of strings
+            for (int i = 0; i < 9; i++)
+            {
+                GameObject.Find("Canvas").transform.GetChild(i + 1).transform.GetChild(1).GetComponent<Text>().text = PlayerPrefs.GetString($"userscores{i}");
+            }
+        }
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        //Array counter to replace
-        
-
-        // int counter_array = 9;
-        // if (menuManager.score_text < userscores[count])
-        // {
-        //     count += 1;
-        // }
-        // else if (menuManager.score_text > userscores[count])
-        // {
-        //     if ((counter_array - 1) != count)
-        //     {
-        //         userscores[counter_array] = userscores[counter_array - 1];
-        //         counter_array -= 1;
-        //     }
-        // }
-
-        //print
+        if (menuManager.count == 9)
+        {
+            //Update array (int)
+            for (int i = 0; i < 9; i++)
+            {
+                userscores[i] = int.Parse(GameObject.Find("Canvas").transform.GetChild(i + 1).transform.GetChild(0).GetComponent<Text>().text);
+                PlayerPrefs.SetFloat($"userscores{i}", userscores[i]);
+            }
+            //Update array (strings)
+            for (int i = 0; i < 9; i++)
+            {
+                usernames[i] = GameObject.Find("Canvas").transform.GetChild(i + 1).transform.GetChild(1).GetComponent<Text>().text;
+                PlayerPrefs.SetString($"userscores{i}", usernames[i]);
+            }
+            Destroy(GameObject.Find("SceneManager"), 1);
+        }
     }
     public void buttonChangeSceneO()
     {
