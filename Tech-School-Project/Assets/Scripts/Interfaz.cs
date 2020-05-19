@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Interfaz : MonoBehaviour
 {
     //This Script
-    public float score;
+    public int score;
 
     //This UI
     GameObject powerJump_UI;

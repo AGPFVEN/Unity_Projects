@@ -7,17 +7,31 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour
 {
     //Score (this try)
-    public float score_text;
+    public int score_text;
     public string username;
     int count;
 
     //Old score
-    // float score_old;
+    public int score_old;
+
+    //Listas
+    string[] usernames;
+    int[] userscores;
+
+    //Checkear listas
+    bool checklistdone;
+
+    //Checkear primer change
+    bool changedone;
 
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
         count = 1;
+
+        //Go to other scene
+        checklistdone = false;
+        changedone = false;
     }
     void FixedUpdate()
     {
@@ -37,28 +51,60 @@ public class MenuManager : MonoBehaviour
         //Scoreboard
         if (SceneManager.GetActiveScene().name == "EndGame")
         {
-            if (float.Parse(GameObject.Find("Canvas").transform.GetChild(count).transform.GetChild(0).GetComponent<Text>().text) < score_text)
+            // if (checklistdone == false)
+            // {
+            //     if (PlayerPrefs.HasKey("List") == false)
+            //     {
+            //         //Set up Arrays of floats
+            //         for (int i = 0; i < 9; i++)
+            //         {
+            //             userscores[i] = float.Parse(GameObject.Find("Canvas").transform.GetChild(i + 1).transform.GetChild(0).gameObject.GetComponent<Text>().text);
+            //         }
+
+            //         //Set up Arrays of strings
+            //         for (int i = 0; i < 9; i++)
+            //         {
+            //             usernames[i] = GameObject.Find("Canvas").transform.GetChild(i + 1).transform.GetChild(1).GetComponent<Text>().text;
+            //         }
+            //     }
+            //     //Checklist done
+            //     checklistdone = true;
+            // }
+            if (int.Parse(GameObject.Find("Canvas").transform.GetChild(count).transform.GetChild(0).GetComponent<Text>().text) < score_text)
             {
+                //old score
+                score_old = int.Parse(GameObject.Find("Canvas").transform.GetChild(count).transform.GetChild(0).GetComponent<Text>().text);
+
                 //Username
-                GameObject.Find("Canvas").transform.GetChild(count).transform.GetChild(1).GetComponent<Text>().text =
-                count + ". " + username;
+                GameObject.Find("Canvas").transform.GetChild(count).transform.GetChild(1).GetComponent<Text>().text = count + ". " + username;
 
                 //Score
-                GameObject.Find("Canvas").transform.GetChild(count).transform.GetChild(0).GetComponent<Text>().text =
-                score_text.ToString();
+                GameObject.Find("Canvas").transform.GetChild(count).transform.GetChild(0).GetComponent<Text>().text = score_text.ToString();
 
-                //Save changes
-                PlayerPrefs.SetInt("Scoreboard", SceneManager.GetActiveScene().buildIndex);
-                PlayerPrefs.Save();
-
-                //Destroy GameObject
-                Destroy(gameObject);
+                //Change values
+                changedone = true;
+                // score_text = float.Parse(GameObject.Find("Canvas").transform.GetChild(count + 1).transform.GetChild(0).GetComponent<Text>().text);
+                // GameObject.Find("Canvas").transform.GetChild(count+1).transform.GetChild(0).GetComponent<Text>().text = score_old.ToString();
             }
-            else if (int.Parse(GameObject.Find("Canvas").transform.GetChild(count).transform.GetChild(0).GetComponent<Text>().text) > score_text)
+            if (changedone == true)
             {
-                count += 1;
+                score_text = int.Parse(GameObject.Find("Canvas").transform.GetChild(count).transform.GetChild(0).GetComponent<Text>().text);
+                GameObject.Find("Canvas").transform.GetChild(count).transform.GetChild(0).GetComponent<Text>().text = score_old.ToString();
+                score_old = score_text;
+                if (count < 9)
+                {
+                    count += 1;
+                }
+            }
+            if (int.Parse(GameObject.Find("Canvas").transform.GetChild(count).transform.GetChild(0).GetComponent<Text>().text) > score_text && changedone == false)
+            {
+                if (count < 9)
+                {
+                    count += 1;
+                }
             }
         }
+        print(count);
     }
     public void Username(string name)
     {
