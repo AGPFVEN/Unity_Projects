@@ -139,28 +139,26 @@ public class Spawn : MonoBehaviour
                 enemy_GameObject.GetComponent<Rigidbody2D>().velocity =
                 -_Spawn_Direction * 5 * Time.deltaTime;
             }
-            else if (score_spawn > 100)
+            else if (score_spawn > 45)
             {
-                print("x10");
                 enemy_GameObject.GetComponent<Rigidbody2D>().velocity =
                 -_Spawn_Direction * score_spawn * Time.deltaTime * 10; 
             }
-            else if (score_spawn > 50)
+            else if (score_spawn > 30 && score_spawn < 45)
             {
                 enemy_GameObject.GetComponent<Rigidbody2D>().velocity =
                 -_Spawn_Direction * score_spawn * Time.deltaTime * 4; 
             }
-            else if (score_spawn > 30)
+            else if (score_spawn < 30 && score_spawn > 15 )
             {
                 enemy_GameObject.GetComponent<Rigidbody2D>().velocity =
                 -_Spawn_Direction * score_spawn * Time.deltaTime * 2; 
             }
-            else if (score_spawn > 5)
+            else if (score_spawn > 5 && score_spawn < 15)
             {
                 enemy_GameObject.GetComponent<Rigidbody2D>().velocity =
                 -_Spawn_Direction * score_spawn * Time.deltaTime; 
             }
-            // else if (score_spawn >)
 
             //Timer reset
             _Timer_Spawn = 0;

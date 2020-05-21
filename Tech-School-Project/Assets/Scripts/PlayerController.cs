@@ -188,26 +188,4 @@ public class PlayerController : MonoBehaviour
             return powerJump;
         }
     }
-    void OnCollisionEnter2D(Collision2D coll)
-    {
-        // if (coll.gameObject.tag == "GainHealth")
-        // {
-        //     health_this -= 0.2f;
-        // }
-        // if (coll.gameObject.tag == "Enemy")
-        // {
-        //     health_this += 0.2f;
-        // }
-        // if (coll.gameObject.tag == "Lava")
-        // {
-        //     health_this += .5f * Time.deltaTime;
-        // }
-    }
-    // void OnCollisionStay2D(Collision2D coll)
-    // {
-    //     if (coll.gameObject.tag == "Lava")
-    //     {
-    //         health_this += .5f * Time.deltaTime;
-    //     }
-    // }
 }

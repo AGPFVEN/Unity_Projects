@@ -68,9 +68,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9454}
     - Class: 114
-      Script: {instanceID: 9644}
-    - Class: 114
-      Script: {instanceID: 16074}
+      Script: {instanceID: 10532}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -674,7 +672,7 @@ ScriptsOnlyBuild:
     className: BulletController
   - hash:
       serializedVersion: 2
-      Hash: bc030776f51756fd839258f34cfdb552
+      Hash: f226f7a6c714389bc574f0ebcdf3ccde
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MenuManager
@@ -776,7 +774,7 @@ ScriptsOnlyBuild:
     className: TMP_SpriteAnimator
   - hash:
       serializedVersion: 2
-      Hash: ac7cfbc90220c648cf10b18c3e4f934c
+      Hash: bfdf060b2603148594c3c06838d1c1db
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Interfaz
@@ -956,16 +954,16 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
+      Hash: 406c80c3d5239b03fcb503acd9bdc44c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EndGame
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 3010a2240758307b8f98d1915d9b858c
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: EndGame
   platform: 19
   scenePathNames:
   - Assets/Scenes/Welcome(now).unity

@@ -20,7 +20,6 @@ public class Interfaz : MonoBehaviour
     PlayerController player_script;
     void Awake()
     {
-        //
         //This Set Up
         powerJump_UI = transform.GetChild(0).gameObject; //Power Jump
         watchJump_UI = transform.GetChild(1).gameObject; //Watch 

@@ -120,85 +120,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &27107065
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2086511000505644140, guid: d573a4b0445770c40ac83d7df91946e3,
-        type: 3}
-      propertyPath: m_Name
-      value: SceneManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 2086511000505644140, guid: d573a4b0445770c40ac83d7df91946e3,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2086511000505644143, guid: d573a4b0445770c40ac83d7df91946e3,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 392.62277
-      objectReference: {fileID: 0}
-    - target: {fileID: 2086511000505644143, guid: d573a4b0445770c40ac83d7df91946e3,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 315.17725
-      objectReference: {fileID: 0}
-    - target: {fileID: 2086511000505644143, guid: d573a4b0445770c40ac83d7df91946e3,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -40.875
-      objectReference: {fileID: 0}
-    - target: {fileID: 2086511000505644143, guid: d573a4b0445770c40ac83d7df91946e3,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2086511000505644143, guid: d573a4b0445770c40ac83d7df91946e3,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2086511000505644143, guid: d573a4b0445770c40ac83d7df91946e3,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2086511000505644143, guid: d573a4b0445770c40ac83d7df91946e3,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2086511000505644143, guid: d573a4b0445770c40ac83d7df91946e3,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 2086511000505644143, guid: d573a4b0445770c40ac83d7df91946e3,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2086511000505644143, guid: d573a4b0445770c40ac83d7df91946e3,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2086511000505644143, guid: d573a4b0445770c40ac83d7df91946e3,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2086511000505644142, guid: d573a4b0445770c40ac83d7df91946e3,
-        type: 3}
-      propertyPath: username
-      value: T1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d573a4b0445770c40ac83d7df91946e3, type: 3}
 --- !u!1 &55466243
 GameObject:
   m_ObjectHideFlags: 0
@@ -1185,6 +1106,7 @@ GameObject:
   - component: {fileID: 914671168}
   - component: {fileID: 914671167}
   - component: {fileID: 914671166}
+  - component: {fileID: 914671170}
   m_Layer: 9
   m_Name: Wall (6)
   m_TagString: Walls
@@ -1301,6 +1223,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &914671170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914671165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1375c729be735e64fb19cd69cde1d215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sign: -1
 --- !u!1 &934271443
 GameObject:
   m_ObjectHideFlags: 0
@@ -2600,6 +2535,7 @@ GameObject:
   - component: {fileID: 2075422436}
   - component: {fileID: 2075422435}
   - component: {fileID: 2075422434}
+  - component: {fileID: 2075422438}
   m_Layer: 9
   m_Name: Wall (5)
   m_TagString: Walls
@@ -2716,6 +2652,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.020000001}
+--- !u!114 &2075422438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075422433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1375c729be735e64fb19cd69cde1d215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sign: 1
 --- !u!1 &2098195893
 GameObject:
   m_ObjectHideFlags: 0

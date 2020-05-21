@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 
 public class Tester : MonoBehaviour
@@ -16,16 +15,7 @@ public class Tester : MonoBehaviour
     {
         if (col.gameObject.tag == "player")
         {
-            if (PlayerPrefs.HasKey("Scoreboard") == false)
-            {
-                SceneManager.LoadScene("EndGame");
-                print("nope");
-            }
-            else if (PlayerPrefs.HasKey("Scoreboard") == true)
-            {
-                SceneManager.LoadScene(PlayerPrefs.GetInt("Scoreboard"));
-                print(PlayerPrefs.GetInt("Scoreboard"));
-            }
+            Destroy(GameObject.FindWithTag("player"));
         }
     }
 }
