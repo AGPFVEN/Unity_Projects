@@ -68,7 +68,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9454}
     - Class: 114
-      Script: {instanceID: 10532}
+      Script: {instanceID: 9644}
+    - Class: 114
+      Script: {instanceID: 10534}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -133,9 +135,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10218}
     - Class: 114
-      Script: {instanceID: 10288}
+      Script: {instanceID: 10290}
     - Class: 114
-      Script: {instanceID: 10476}
+      Script: {instanceID: 10478}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -198,7 +200,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10070}
     - Class: 114
-      Script: {instanceID: 10400}
+      Script: {instanceID: 10402}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -786,7 +788,7 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
-      Hash: 80abc514ba0b28df6f640f6cc587ffc2
+      Hash: 4416f11116bf493169a15ff43126cb0f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: AnticheatIngame
@@ -954,7 +956,7 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
-      Hash: 406c80c3d5239b03fcb503acd9bdc44c
+      Hash: f5c745efc6364c3789b2130c34a46fef
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EndGame
@@ -969,4 +971,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Welcome(now).unity
   - Assets/Scenes/Juego_1.unity
   - Assets/Scenes/EndGame.unity
-  playerPath: D:/Users/Usuario/Proyecto-0-Coop/Tech-School-Project/_Builds/Tech-School-Project.exe
+  playerPath: D:/Users/Usuario/Proyecto-0-Coop/Tech-School-Project/_Builds/V_0.02/Tech-School-Project.exe

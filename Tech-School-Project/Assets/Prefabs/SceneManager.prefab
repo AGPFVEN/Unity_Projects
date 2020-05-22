@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2086511000505644142}
   m_Layer: 0
   m_Name: SceneManager
-  m_TagString: Untagged
+  m_TagString: SceneManager_tag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,3 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score_text: 0
   username: 
+  count: 0
+  score_old: 0
+  username_old: 

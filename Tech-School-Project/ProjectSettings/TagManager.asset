@@ -10,6 +10,7 @@ TagManager:
   - player
   - GainHeath
   - Enemy
+  - SceneManager_tag
   layers:
   - Default
   - TransparentFX

@@ -25,6 +25,7 @@ public class EndGame : MonoBehaviour
 
     void Start()
     {
+        //First of all
         firstdone = false;
 
         //Contador
@@ -75,9 +76,5 @@ public class EndGame : MonoBehaviour
                 PlayerPrefs.SetString($"usernames{i}", usernames[i]);
             }
         }
-    }
-    public void buttonChangeSceneO()
-    {
-        SceneManager.LoadScene("Welcome(now)");
     }
 }

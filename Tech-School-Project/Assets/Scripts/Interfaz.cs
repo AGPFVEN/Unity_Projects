@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class Interfaz : MonoBehaviour
 {
     //This Script
@@ -45,6 +46,10 @@ public class Interfaz : MonoBehaviour
         else if (player_script.watch_Jump > 0)
         {
             watchJump_UI.GetComponent<Text>().text = "Your jump is NOT ready";
+        }
+        if(GameObject.Find("Player") == null)
+        {
+            SceneManager.LoadScene("EndGame");
         }
     }
 }
