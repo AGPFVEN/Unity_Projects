@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask wallMask;
     Rigidbody2D rb;
     Transform cannon_Transform;
+    public int exp;
 
     //Fire
     float watch_FireReload;
@@ -27,7 +28,7 @@ public class PlayerController : MonoBehaviour
     float jumpHeight;
 
     //Health
-    GameObject health_gameobject;
+    float health_gameobject;
     public float health_this;
 
     //Cannon rotation
@@ -73,7 +74,7 @@ public class PlayerController : MonoBehaviour
 
         //Health
         health_this = 0;
-        health_gameobject = transform.GetChild(2).gameObject;
+        health_gameobject = transform.GetChild(3).gameObject.transform.GetChild(1).gameObject.transform.localScale.y;
     }
     void Update()
     {
@@ -82,7 +83,7 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        health_gameobject.transform.localScale = new Vector3(health_this, health_this, 0f);
+        health_gameobject -= health_this / health_gameobject;
 
         //Horizontal movement
         float hInput = Input.GetAxis("Horizontal");

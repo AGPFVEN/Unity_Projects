@@ -41,6 +41,7 @@ public class Spawn : MonoBehaviour
 
     //Prefabs health giver set up
     public GameObject _healthGiver_Prefab;
+    public GameObject _something_Prefab;
 
     void Awake()
     {
@@ -162,7 +163,6 @@ public class Spawn : MonoBehaviour
 
             //Timer reset
             _Timer_Spawn = 0;
-
         }
         //Timer not enough
         else if (_Timer_Spawn < 2)

@@ -16,12 +16,15 @@ public class EnemyScript : MonoBehaviour
         if (coll.gameObject.tag == "Bullet")
         {
             spawn_Script.score += 1;
+            player_script.exp += 1;
             Destroy(gameObject);
         }
         else if (coll.gameObject.tag == "player")
         {
             spawn_Script.score += 1;
             player_script.health_this += 3 * Time.deltaTime;
+            player_script.exp += 1;
+
             Destroy(gameObject);
         }
     }

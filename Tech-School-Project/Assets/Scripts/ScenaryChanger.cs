@@ -66,7 +66,7 @@ public class ScenaryChanger : MonoBehaviour
                 RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezePositionX;
             }
         }
-        if (_spawn_script.score >= 20)
+        if (_spawn_script.score > 20 && _spawn_script.score < 40)
         {
             if (wallmini_under_right.rotation != Quaternion.Euler(0, 0, 90f))
             {
@@ -77,15 +77,19 @@ public class ScenaryChanger : MonoBehaviour
             if (wallmini_under_right.position.x > -7f)
             {
                 wallmini_under_right_rb.AddForce
-                (new Vector2(-6.5f - wallmini_under_right.position.x, -2.6f - wallmini_under_right.position.y).normalized * 250,ForceMode2D.Force);
+                (new Vector2(-6.5f - wallmini_under_right.position.x, -2.6f - wallmini_under_right.position.y).normalized * 250, ForceMode2D.Force);
             }
             else if (wallmini_under_right.position.x <= -6.5f)
             {
-                wallmini_under_right_rb.constraints = 
+                wallmini_under_right_rb.constraints =
                 RigidbodyConstraints2D.FreezeRotation
-                |RigidbodyConstraints2D.FreezePositionY| 
+                | RigidbodyConstraints2D.FreezePositionY |
                 RigidbodyConstraints2D.FreezePositionX;
             }
+        }
+        if (_spawn_script.score >= 40)
+        {
+            
         }
     }
 }

@@ -114,14 +114,6 @@ public class MenuManager : MonoBehaviour
     {
         username = name;
     }
-    public void buttonChangeScene()
-    {
-        SceneManager.LoadScene("Juego_1");
-    }
-    public void buttonChangeSceneO()
-    {
-        SceneManager.LoadScene("Welcome(now)");
-    }
     void CalculatePos(string scoreOfPos, int scoreMine)
     {
         int scoreOfPos_int = int.Parse(scoreOfPos);
