@@ -1,0 +1,29 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Health_Controller : MonoBehaviour
+{
+    //This
+    Transform health_transform;
+    public float health_this = 0.3402343f;
+    
+    //Reference Player
+    Transform player_transform;
+    void Start()
+    {
+        //Set up transforms
+        health_transform = transform.GetChild(1).transform;
+        player_transform = GameObject.Find("Player").transform;
+    }
+
+    void Update()
+    {
+        transform.position = new Vector3(player_transform.position.x, player_transform.position.y + 0.83f, 0);
+        transform.GetChild(1).transform.localScale = new Vector3(health_this, 0.075689f, 0);
+        if(health_this <= 0)
+        {
+            Destroy(GameObject.Find("Player"));
+        }
+    }
+}

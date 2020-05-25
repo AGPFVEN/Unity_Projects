@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     public LayerMask wallMask;
     Rigidbody2D rb;
     Transform cannon_Transform;
-    public int exp;
 
     //Fire
     float watch_FireReload;
@@ -28,8 +27,7 @@ public class PlayerController : MonoBehaviour
     float jumpHeight;
 
     //Health
-    float health_gameobject;
-    public float health_this;
+    float health;
 
     //Cannon rotation
     Vector2 lookDirection;
@@ -49,6 +47,11 @@ public class PlayerController : MonoBehaviour
 
     //Mira
     GameObject mira_Gameobject;
+
+    //EXP
+    Transform exp_Transform;
+    public float exp_Float;
+    int level;
 
     void Start()
     {
@@ -72,18 +75,20 @@ public class PlayerController : MonoBehaviour
         //Mira set up
         mira_Gameobject = transform.GetChild(1).gameObject;
 
-        //Health
-        health_this = 0;
-        health_gameobject = transform.GetChild(3).gameObject.transform.GetChild(1).gameObject.transform.localScale.y;
+        //Exp set up
+        exp_Float = 0;
+        level = 0;
+        exp_Transform = transform.GetChild(2).transform;
     }
     void Update()
     {
         //Health
-        if (health_this >= 1)
-        {
-            Destroy(gameObject);
-        }
-        health_gameobject -= health_this / health_gameobject;
+        health = GameObject.Find("Health_bar").GetComponent<Health_Controller>().health_this;
+
+        //EXP////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        exp_Transform.localScale = new Vector3(exp_Float, exp_Float, 0);
+        
+
 
         //Horizontal movement
         float hInput = Input.GetAxis("Horizontal");
@@ -128,8 +133,12 @@ public class PlayerController : MonoBehaviour
         //Jump
         if (Input.GetKey(KeyCode.Space) && watch_Jump <= 0)
         {
-            //Increse Force
-            power_Jump += 3 * Time.deltaTime;
+            //Increse Force & Set up a limit
+            if (power_Jump < 3)
+            {
+                power_Jump += 3 * Time.deltaTime;
+
+            }
         }
         else if (!Input.GetKey(KeyCode.Space) && watch_Jump <= 0 && fireRay.transform != null)
         {
@@ -145,7 +154,7 @@ public class PlayerController : MonoBehaviour
                     (new Vector2(
                         -jumped_GameObject.transform.position.x + transform.position.x,
                         -jumped_GameObject.transform.position.y + transform.position.y).normalized
-                        * power_Jump * 2 * ((health_Enemy_script.healthset) - health_this / fireRay.distance)
+                        * power_Jump * 2 * ((health_Enemy_script.healthset) - health / fireRay.distance)
                     );
                 }
             }

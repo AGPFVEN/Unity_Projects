@@ -12,15 +12,15 @@ public class GainHealth : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.tag == "Bullet")
-        {
-            player_script.health_this -= 5 * Time.deltaTime;
-            Destroy(gameObject);
-        }
-        if (coll.gameObject.tag == "player")
-        {
-            player_script.health_this -= 5 * Time.deltaTime;
-            Destroy(gameObject);
-        }
+        // if (coll.gameObject.tag == "Bullet")
+        // {
+        //     player_script.health_this -= 5 * Time.deltaTime;
+        //     Destroy(gameObject);
+        // }
+        // if (coll.gameObject.tag == "player")
+        // {
+        //     player_script.health_this -= 5 * Time.deltaTime;
+        //     Destroy(gameObject);
+        // }
     }
 }
