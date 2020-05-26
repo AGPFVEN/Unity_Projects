@@ -15,6 +15,8 @@ public class Interfaz : MonoBehaviour
     Text watchJump_text;
     GameObject score_UI;
     Text score_text;
+    GameObject exp_UI;
+    Text exp_text;
 
     //Player
     GameObject player_GO;
@@ -25,6 +27,7 @@ public class Interfaz : MonoBehaviour
         powerJump_UI = transform.GetChild(0).gameObject; //Power Jump
         watchJump_UI = transform.GetChild(1).gameObject; //Watch 
         score_UI = transform.GetChild(2).gameObject;     //Score
+        exp_UI = transform.GetChild(3).gameObject;       //Exp
 
         //Player set up
         player_GO = GameObject.Find("Player");
@@ -37,6 +40,9 @@ public class Interfaz : MonoBehaviour
 
         //Score
         score_UI.GetComponent<Text>().text = "Score: " + score.ToString();
+
+        //Exp
+        exp_UI.GetComponent<Text>().text = "Level: " + player_script.level;
 
         //Jump Watch
         if (player_script.watch_Jump <= 0)

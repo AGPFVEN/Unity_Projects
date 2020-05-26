@@ -51,7 +51,8 @@ public class PlayerController : MonoBehaviour
     //EXP
     Transform exp_Transform;
     public float exp_Float;
-    int level;
+    public int disposable_level;
+    public int level;
 
     void Start()
     {
@@ -78,6 +79,7 @@ public class PlayerController : MonoBehaviour
         //Exp set up
         exp_Float = 0;
         level = 0;
+        disposable_level = 0;
         exp_Transform = transform.GetChild(2).transform;
     }
     void Update()
@@ -86,6 +88,13 @@ public class PlayerController : MonoBehaviour
         health = GameObject.Find("Health_bar").GetComponent<Health_Controller>().health_this;
 
         //EXP////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //////////Gestiona variables
+        if(exp_Float >= 1)
+        {
+            exp_Float = 0;
+            level += 1;
+            disposable_level +=1;
+        }
         exp_Transform.localScale = new Vector3(exp_Float, exp_Float, 0);
         
 
