@@ -25,7 +25,7 @@ public class EnemyScript : MonoBehaviour
         {
             spawn_Script.score += 1;
             health_script.health_this -= 0.2f * 0.325f;
-            player_script.exp_Float += 0.2f;
+            player_script.exp_Float += 0.2f / player_script.level;
 
             Destroy(gameObject);
         }

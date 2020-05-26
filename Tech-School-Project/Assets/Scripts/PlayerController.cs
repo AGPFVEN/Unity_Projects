@@ -89,15 +89,25 @@ public class PlayerController : MonoBehaviour
 
         //EXP////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //////////Gestiona variables
-        if(exp_Float >= 1)
+        if (exp_Float >= 1)
         {
             exp_Float = 0;
             level += 1;
-            disposable_level +=1;
+            disposable_level += 1;
         }
         exp_Transform.localScale = new Vector3(exp_Float, exp_Float, 0);
-        
 
+        //Disposable level
+        if (disposable_level > 0)
+        {
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                print("Level up");
+
+                //disposable level
+                disposable_level -= 1;
+            } 
+        }
 
         //Horizontal movement
         float hInput = Input.GetAxis("Horizontal");
