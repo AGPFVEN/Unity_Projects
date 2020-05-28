@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
     GameObject mira_Gameobject;
 
     //EXP
+    public GameObject levelUp_prefab;
     Transform exp_Transform;
     public float exp_Float;
     public int disposable_level;
@@ -94,6 +95,7 @@ public class PlayerController : MonoBehaviour
             exp_Float = 0;
             level += 1;
             disposable_level += 1;
+            Instantiate(levelUp_prefab, new Vector3(this.transform.position.x , this.transform.position.y, 0), Quaternion.Euler(0, 0, 0));
         }
         exp_Transform.localScale = new Vector3(exp_Float, exp_Float, 0);
 
