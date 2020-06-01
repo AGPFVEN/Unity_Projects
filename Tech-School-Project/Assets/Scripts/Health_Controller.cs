@@ -12,6 +12,7 @@ public class Health_Controller : MonoBehaviour
     //Reference Player
     Transform player_transform;
     PlayerController player_script;
+    
     void Start()
     {
         //Set up transforms
@@ -36,6 +37,6 @@ public class Health_Controller : MonoBehaviour
         }
 
         //PowerJump
-        transform.GetChild(2).transform.localScale = new Vector3((player_script.power_Jump * 0.325f) / 3, 0.075689f, 0);
+        transform.GetChild(2).transform.localScale = new Vector3((player_script.power_Jump * 0.325f) / 3, 0.28803f, 0);
     }
 }

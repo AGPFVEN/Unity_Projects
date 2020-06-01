@@ -88,17 +88,6 @@ public class PlayerController : MonoBehaviour
         //Health
         health = GameObject.Find("Health_bar").GetComponent<Health_Controller>().health_this;
 
-        //EXP////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //////////Gestiona variables
-        if (exp_Float >= 1)
-        {
-            exp_Float = 0;
-            level += 1;
-            disposable_level += 1;
-            Instantiate(levelUp_prefab, new Vector3(this.transform.position.x , this.transform.position.y, 0), Quaternion.Euler(0, 0, 0));
-        }
-        exp_Transform.localScale = new Vector3(exp_Float, exp_Float, 0);
-
         //Disposable level
         if (disposable_level > 0)
         {
@@ -108,7 +97,7 @@ public class PlayerController : MonoBehaviour
 
                 //disposable level
                 disposable_level -= 1;
-            } 
+            }
         }
 
         //Horizontal movement
@@ -193,6 +182,16 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+        //EXP////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //////////Gestiona variables
+        if (exp_Float >= 1)
+        {
+            exp_Float = 0;
+            level += 1;
+            disposable_level += 1;
+            Instantiate(levelUp_prefab, new Vector3(this.transform.position.x  + .5f, this.transform.position.y + 1f, 0), Quaternion.Euler(0, 0, 0));
+        }
+        exp_Transform.localScale = new Vector3(exp_Float, exp_Float, 0);
 
         //Sand watch
         if (watch_Jump > 0)
