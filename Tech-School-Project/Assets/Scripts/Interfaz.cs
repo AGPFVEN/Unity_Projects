@@ -19,9 +19,11 @@ public class Interfaz : MonoBehaviour
     PlayerController player_script;
     void Awake()
     {
-        //This Set Up
-        score_UI = transform.GetChild(0).gameObject;     //Score
-        exp_UI = transform.GetChild(1).gameObject;       //Exp
+        //Left Set Up
+        score_UI = transform.GetChild(0).transform.GetChild(0).gameObject;     //Score
+        exp_UI = transform.GetChild(0).transform.GetChild(1).gameObject;       //Exp
+
+        //Right Set Up
 
         //Player set up
         player_GO = GameObject.Find("Player");
