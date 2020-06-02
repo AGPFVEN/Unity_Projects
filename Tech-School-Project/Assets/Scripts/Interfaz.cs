@@ -8,11 +8,19 @@ public class Interfaz : MonoBehaviour
     //This Script
     public int score;
 
-    //This UI
+    //This UI Right
     GameObject score_UI;
     Text score_text;
     GameObject exp_UI;
     Text exp_text;
+
+    //This UI Left
+    GameObject velocity_UI;
+    Text velocity_text;
+    GameObject firerate_UI;
+    Text firerate_text;
+    GameObject givehealth_UI;
+    Text givehealth_text;
 
     //Player
     GameObject player_GO;
@@ -21,9 +29,12 @@ public class Interfaz : MonoBehaviour
     {
         //Left Set Up
         score_UI = transform.GetChild(0).transform.GetChild(0).gameObject;     //Score
-        exp_UI = transform.GetChild(0).transform.GetChild(1).gameObject;       //Exp
+        exp_UI = transform.GetChild(0).transform.GetChild(1).gameObject;       //Level
 
         //Right Set Up
+        velocity_UI = transform.GetChild(1).transform.GetChild(0).gameObject;  //Velocity
+        firerate_UI = transform.GetChild(1).transform.GetChild(1).gameObject;  //Fire rate
+        givehealth_UI = transform.GetChild(1).transform.GetChild(2).gameObject;//Health given
 
         //Player set up
         player_GO = GameObject.Find("Player");
@@ -31,6 +42,7 @@ public class Interfaz : MonoBehaviour
     }
     void Update()
     {
+        ///////////////////////////R I G H T///////////////////////////////////////////////
         //Score
         score_UI.GetComponent<Text>().text = "Score: " + score.ToString();
 
@@ -41,5 +53,7 @@ public class Interfaz : MonoBehaviour
         {
             SceneManager.LoadScene("EndGame");
         }
+
+        ////////////////////////////L E F T//////////////////////////////////////////////////
     }
 }
