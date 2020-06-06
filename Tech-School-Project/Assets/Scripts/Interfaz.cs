@@ -10,17 +10,12 @@ public class Interfaz : MonoBehaviour
 
     //This UI Right
     GameObject score_UI;
-    Text score_text;
     GameObject exp_UI;
-    Text exp_text;
 
     //This UI Left
     GameObject velocity_UI;
-    Text velocity_text;
     GameObject firerate_UI;
-    Text firerate_text;
     GameObject givehealth_UI;
-    Text givehealth_text;
 
     //Player
     GameObject player_GO;
@@ -54,6 +49,8 @@ public class Interfaz : MonoBehaviour
             SceneManager.LoadScene("EndGame");
         }
 
-        ////////////////////////////L E F T//////////////////////////////////////////////////
+        ////////////////////////////L E F T/////////////////////////////////////////////////
+        //Velocity 
+        /*velocity_UI.GetComponent<Text>().text =*/
     }
 }
