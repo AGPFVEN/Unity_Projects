@@ -42,7 +42,7 @@ public class Interfaz : MonoBehaviour
         score_UI.GetComponent<Text>().text = "Score: " + score.ToString();
 
         //Exp
-        exp_UI.GetComponent<Text>().text = "Level: " + player_script.level;
+        exp_UI.GetComponent<Text>().text = "Level: " + player_script.level.ToString();
 
         if(GameObject.Find("Player") == null)
         {
@@ -51,6 +51,12 @@ public class Interfaz : MonoBehaviour
 
         ////////////////////////////L E F T/////////////////////////////////////////////////
         //Velocity 
-        /*velocity_UI.GetComponent<Text>().text =*/
+        velocity_UI.GetComponent<Text>().text = "Speed: x" + (player_script.speed / 5f).ToString();
+
+        //Fire rate
+        firerate_UI.GetComponent<Text>().text = "Fire Rate: -" + player_script.watch_fire_Limit.ToString() + "s";
+
+        //Give Health
+        givehealth_UI.GetComponent<Text>().text = player_script.givenhealth.ToString() + " Times";
     }
 }

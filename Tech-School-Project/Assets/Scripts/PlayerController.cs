@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D jumped_rb;
 
     //Modificable Stats
-    float speed;
+    public float speed;
     float jumpHeight;
 
     //Health
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     //Fire
     public GameObject bullet_Gameobject;
     float watch_fire;
-    float watch_fire_Limit; //Esta variable hay que quitarla en cuanto tengas score
+    public float watch_fire_Limit; //Esta variable hay que quitarla en cuanto tengas score
 
     //Enemy
     SetHealth health_Enemy_script;
@@ -54,6 +54,9 @@ public class PlayerController : MonoBehaviour
     public float exp_Float;
     public int disposable_level;
     public int level;
+
+    //Give Health
+    public float givenhealth;
 
     void Start()
     {
@@ -82,6 +85,9 @@ public class PlayerController : MonoBehaviour
         level = 0;
         disposable_level = 0;
         exp_Transform = transform.GetChild(2).transform;
+
+        //Give health
+        givenhealth = 0;
     }
     void Update()
     {
