@@ -54,7 +54,7 @@ public class Interfaz : MonoBehaviour
         velocity_UI.GetComponent<Text>().text = "Speed: x" + (player_script.speed / 5f).ToString();
 
         //Fire rate
-        firerate_UI.GetComponent<Text>().text = "Fire Rate: -" + player_script.watch_fire_Limit.ToString() + "s";
+        firerate_UI.GetComponent<Text>().text = "Fire Rate: " + player_script.watch_fire_Limit.ToString() + "s";
 
         //Give Health
         givehealth_UI.GetComponent<Text>().text = player_script.givenhealth.ToString() + " Times";
