@@ -190,7 +190,7 @@ public class PlayerController : MonoBehaviour
         }
         //EXP////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //////////Gestiona variables
-        if (exp_Float >= 1)
+        if (exp_Float > 1)
         {
             exp_Float = 0;
             level += 1;
