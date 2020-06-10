@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D jumped_rb;
 
     //Modificable Stats
-    public float speed;
+    public float[] modstats;
     float jumpHeight;
 
     //Health
@@ -39,7 +39,6 @@ public class PlayerController : MonoBehaviour
     //Fire
     public GameObject bullet_Gameobject;
     float watch_fire;
-    public float watch_fire_Limit; //Esta variable hay que quitarla en cuanto tengas score
 
     //Enemy
     SetHealth health_Enemy_script;
@@ -74,7 +73,7 @@ public class PlayerController : MonoBehaviour
         watch_FireReloadL = 1; //Esta variable hay que quitarla en cuanto tengas score
 
         //Modificable Stats
-        speed = 5f;
+        modstats[0] = 5f;
         jumpHeight = 2f;
 
         //Mira set up
@@ -108,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
         //Horizontal movement
         float hInput = Input.GetAxis("Horizontal");
-        rb.AddForce(new Vector2(hInput * speed, 0));
+        rb.AddForce(new Vector2(hInput * modstats[0], 0));
 
         //Cannon rotation
         lookDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
@@ -196,6 +195,10 @@ public class PlayerController : MonoBehaviour
             level += 1;
             disposable_level += 1;
             Instantiate(levelUp_prefab, new Vector3(this.transform.position.x  + .5f, this.transform.position.y + 1f, 0), Quaternion.Euler(0, 0, 0));
+        }
+        if (exp_Float > 1)
+        {
+
         }
         exp_Transform.localScale = new Vector3(exp_Float, exp_Float, 0);
 
