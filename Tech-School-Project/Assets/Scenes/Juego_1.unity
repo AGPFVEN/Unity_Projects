@@ -921,10 +921,9 @@ MonoBehaviour:
   watch_Jump: 0
   watch_Jump_bool: 0
   power_Jump: 0
-  speed: 0
+  modstats: []
   bullet_Gameobject: {fileID: 1551608104427375577, guid: 93b7eafeeeef98b4081bd4758e93b5d5,
     type: 3}
-  watch_fire_Limit: 0
   levelUp_prefab: {fileID: 7088992709476361324, guid: e943bd73385f8f24aa26ac9f8d9d4b4c,
     type: 3}
   exp_Float: 0
@@ -1499,7 +1498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7596f2850d522c44eb360a4ef4711069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health_this: 0.325
+  health_this: 0.3402343
 --- !u!1 &866895313
 GameObject:
   m_ObjectHideFlags: 0
@@ -1722,7 +1721,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomspin: 0
-  sign: -1
+  sign: 0
 --- !u!1 &1111785666
 GameObject:
   m_ObjectHideFlags: 0
@@ -2290,7 +2289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomspin: 0
-  sign: 1
+  sign: -1
 --- !u!1 &1524764403
 GameObject:
   m_ObjectHideFlags: 0
@@ -2839,7 +2838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomspin: 0
-  sign: -1
+  sign: 1
 --- !u!1 &1631601684
 GameObject:
   m_ObjectHideFlags: 0
@@ -2967,7 +2966,8 @@ MonoBehaviour:
     type: 3}
   _healthGiver_Prefab: {fileID: 5003037237780791257, guid: 707a5a3ead9f2d748918db88cdbe66c4,
     type: 3}
-  _something_Prefab: {fileID: 0}
+  _something_Prefab: {fileID: 8513611105771963697, guid: 4c9b1c7bb9ad3704182d23f033a80982,
+    type: 3}
 --- !u!114 &1783522664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2980,8 +2980,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 977e023c5038e0546ba98fd2ac47437c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall_under_left: {fileID: 0}
-  wall_under_right: {fileID: 0}
   wall_under_left_rb: {fileID: 0}
   wall_under_right_rb: {fileID: 0}
 --- !u!1 &1851782245

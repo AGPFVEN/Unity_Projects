@@ -189,18 +189,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d573a4b0445770c40ac83d7df91946e3, type: 3}
---- !u!114 &53050925 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2086511000505644142, guid: d573a4b0445770c40ac83d7df91946e3,
-    type: 3}
-  m_PrefabInstance: {fileID: 17396187}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5174d3334e63aa4093338ff6d2dbd65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &190276549
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,7 +433,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_MethodName: 
-        m_Mode: 5
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1228,8 +1216,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 53050925}
-        m_MethodName: buttonChangeScene
+      - m_Target: {fileID: 1727256635}
+        m_MethodName: buttonChangeScene1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

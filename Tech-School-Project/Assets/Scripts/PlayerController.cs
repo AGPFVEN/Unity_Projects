@@ -59,9 +59,12 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        //Declare Arrays
+        modstats = new float[2];
+
         //Fire
         watch_fire = 0;
-        watch_fire_Limit = 1; //Esta variable hay que quitarla en cuanto tengas score
+        modstats[1] = 1; //timepo entre disparo
 
         //Basic Stuff
         rb = GetComponent<Rigidbody2D>();
@@ -121,7 +124,7 @@ public class PlayerController : MonoBehaviour
             {
                 Fire(cannon_Transform_Top, lookDirection.normalized, Quaternion.Euler(0f, 0f, lookAngle - 90f), bullet_Gameobject);
                 rb.AddForce(-lookDirection.normalized * 3, ForceMode2D.Impulse);
-                watch_fire = watch_fire_Limit;
+                watch_fire = modstats[1];
             }
         }
         if (watch_fire > 0)
@@ -189,7 +192,7 @@ public class PlayerController : MonoBehaviour
         }
         //EXP////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //////////Gestiona variables
-        if (exp_Float > 1)
+        if (exp_Float >= 1)
         {
             exp_Float = 0;
             level += 1;

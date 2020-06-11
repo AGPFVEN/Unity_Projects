@@ -7,8 +7,8 @@ public class ScenaryChanger : MonoBehaviour
     //Set up walls (Transforms)
     Transform wallmini_under_left;
     Transform wallmini_under_right;
-    public Transform wall_under_left;
-    public Transform wall_under_right;
+    Transform wall_under_left;
+    Transform wall_under_right;
     Transform wall_up;
 
     //Set up walls (Rigidbodies)
@@ -44,23 +44,23 @@ public class ScenaryChanger : MonoBehaviour
     {
         if (_spawn_script.score >= 10 && _spawn_script.score <= 20)
         {
-            if (wallmini_under_left.rotation != Quaternion.Euler(0, 0, -90f) && wallmini_under_left.position.x < 6.5f)
+            if (wallmini_under_left.position.x < 6f)
             {
                 wallmini_under_left_rb.constraints =
                 RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
 
-                wallmini_under_left.rotation *= Quaternion.Euler(0, 0, -45);
+                // wallmini_under_left.rotation *= Quaternion.Euler(0, 0, -45);
                 wallmini_under_left_rb.AddForce
                 (
                     new Vector2
                     (
                         6.5f - wallmini_under_left.position.x,
                         -2.6f - wallmini_under_left.position.y
-                    ).normalized * 20000,
+                    ).normalized * 525,
                     ForceMode2D.Force
                 );
             }
-            else if (wallmini_under_left.rotation == Quaternion.Euler(0, 0, -90f) && wallmini_under_left.position.x >= 6.5f)
+            else if (wallmini_under_left.position.x >= 6f)
             {
                 wallmini_under_left_rb.constraints =
                 RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezePositionX;
@@ -68,28 +68,21 @@ public class ScenaryChanger : MonoBehaviour
         }
         if (_spawn_script.score > 20 && _spawn_script.score < 40)
         {
-            if (wallmini_under_right.rotation != Quaternion.Euler(0, 0, 90f))
+            if (wallmini_under_right.position.x <= -6)
             {
                 wallmini_under_right_rb.constraints =
-                RigidbodyConstraints2D.FreezePositionY;
-                wallmini_under_right.rotation = Quaternion.Euler(0, 0, 90f);
+                RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezePositionX;
             }
-            if (wallmini_under_right.position.x > -7f)
+            if (wallmini_under_right.position.x > -6f)
             {
+                wallmini_under_right_rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
                 wallmini_under_right_rb.AddForce
                 (new Vector2(-6.5f - wallmini_under_right.position.x, -2.6f - wallmini_under_right.position.y).normalized * 250, ForceMode2D.Force);
-            }
-            else if (wallmini_under_right.position.x <= -6.5f)
-            {
-                wallmini_under_right_rb.constraints =
-                RigidbodyConstraints2D.FreezeRotation
-                | RigidbodyConstraints2D.FreezePositionY |
-                RigidbodyConstraints2D.FreezePositionX;
             }
         }
         if (_spawn_script.score >= 40)
         {
-            
+
         }
     }
 }
