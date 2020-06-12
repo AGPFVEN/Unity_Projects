@@ -32,7 +32,7 @@ public class EndGame : MonoBehaviour
         count = 1;
 
         //Menumanager
-        menuManager = GameObject.Find("SceneManager").GetComponent<MenuManager>();
+        menuManager = GameObject.FindWithTag("SceneManager_tag").GetComponent<MenuManager>();
 
         //Arrays
         userscores = new int[9];

@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
         watch_FireReloadL = 1; //Esta variable hay que quitarla en cuanto tengas score
 
         //Modificable Stats
-        modstats[0] = 5f;
+        modstats[0] = 10f; //Speed
         jumpHeight = 2f;
 
         //Mira set up

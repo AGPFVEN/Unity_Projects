@@ -9,21 +9,26 @@ public class ButtonScript : MonoBehaviour
     //Set up (button to scene 1)
     public GameObject playerPrefabs;
     string originalname;
-    void Start()
+    void Awake()
     {
-        if(GameObject.FindGameObjectWithTag("SceneManager_tag") == true)
-        {
-            originalname = GameObject.FindGameObjectWithTag("SceneManager_tag").GetComponent<MenuManager>().username;
-        }
+        originalname = GameObject.FindGameObjectWithTag("SceneManager_tag").GetComponent<MenuManager>().username;
+    }
+    void Update()
+    {
+        print(originalname);
     }
     public void buttonChangeSceneO()
     {
         SceneManager.LoadScene("Welcome(now)");
+        Destroy(GameObject.FindGameObjectWithTag("SceneManager_tag"));
     }
     public void buttonChangeScene1()
     {
-        Instantiate(playerPrefabs);
-        GameObject.FindGameObjectWithTag("SceneManager_tag").GetComponent<MenuManager>().username = originalname;
+        if (SceneManager.GetActiveScene().name == "EndGame")
+        {
+            Instantiate(playerPrefabs);
+            GameObject.FindGameObjectWithTag("SceneManager_tag").GetComponent<MenuManager>().username = originalname;
+        }
         SceneManager.LoadScene("Juego_1");
     }
     public void buttonExitGame()
