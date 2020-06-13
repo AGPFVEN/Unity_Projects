@@ -199,10 +199,13 @@ public class PlayerController : MonoBehaviour
             disposable_level += 1;
             Instantiate(levelUp_prefab, new Vector3(this.transform.position.x  + .5f, this.transform.position.y + 1f, 0), Quaternion.Euler(0, 0, 0));
         }
-        if (exp_Float > 1)
-        {
+        // if (disposable_level > 0)
+        // {
+        //     if(Input.GetKey(KeyCode.Alpha1))
+        //     {
 
-        }
+        //     }
+        // }
         exp_Transform.localScale = new Vector3(exp_Float, exp_Float, 0);
 
         //Sand watch
@@ -218,7 +221,6 @@ public class PlayerController : MonoBehaviour
     }
     float HoldJump(float powerJump)
     {
-
         if (Input.GetKey(KeyCode.Space) == true)
         {
             powerJump += 1 * Time.deltaTime;
