@@ -17,10 +17,10 @@ public class GainHealth : MonoBehaviour
         //     player_script.health_this -= 5 * Time.deltaTime;
         //     Destroy(gameObject);
         // }
-        // if (coll.gameObject.tag == "player")
-        // {
-        //     player_script.health_this -= 5 * Time.deltaTime;
-        //     Destroy(gameObject);
-        // }
+        if (coll.gameObject.tag == "player")
+        {
+            GameObject.Find("Health_bar").GetComponent<Health_Controller>().health_this += 0.5f * 0.325f;
+            Destroy(gameObject);
+        }
     }
 }

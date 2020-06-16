@@ -26,7 +26,6 @@ public class BulletController : MonoBehaviour
                 aCollider.isTrigger = true;
             }
         }
-
         //Que pasen 10s
         if (bTLimit > 0)
         {

@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
 
     //Modificable Stats
     public float[] modstats;
+    public float[] inputlevel;
     float jumpHeight;
 
     //Health
@@ -101,8 +102,6 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.V))
             {
-                print("Level up");
-
                 //disposable level
                 disposable_level -= 1;
             }
@@ -203,7 +202,6 @@ public class PlayerController : MonoBehaviour
         // {
         //     if(Input.GetKey(KeyCode.Alpha1))
         //     {
-
         //     }
         // }
         exp_Transform.localScale = new Vector3(exp_Float, exp_Float, 0);

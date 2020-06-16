@@ -31,7 +31,6 @@ public class Spawn : MonoBehaviour
 
     //Score (connection with Interfaz)
     float score_spawn;
-    Interfaz _canvas_script;
 
     //Prefabs Enemy set up
     public GameObject enemyPrefab_GameObject;
@@ -59,12 +58,12 @@ public class Spawn : MonoBehaviour
         clock = 0;
         _Timer_Spawn = 0;
 
-        //Score
-        _canvas_script = GameObject.Find("Canvas").GetComponent<Interfaz>();
-        score_spawn = _canvas_script.score;  //TODO: Quit variable
     }
     void FixedUpdate()
     {
+        //Score
+        score_spawn = GameObject.Find("Canvas").GetComponent<Interfaz>().score;
+
         //Clock Work
         if (clock < 360)
         {
@@ -88,7 +87,7 @@ public class Spawn : MonoBehaviour
         _Spawn_up[1] = _Spawn_up_right;
 
         //Timer se acabo 
-        if (_Timer_Spawn >= 1) //TODO: DEPENDER DE SCORE
+        if (_Timer_Spawn >= 1-(score_spawn/(score_spawn+10))) //TODO: DEPENDER DE SCORE
         {
             //Select Spawn
             _Select_spawn_int = Random.Range(0, 2);
@@ -140,32 +139,33 @@ public class Spawn : MonoBehaviour
                 enemy_GameObject.GetComponent<Rigidbody2D>().velocity =
                 -_Spawn_Direction * 5 * Time.deltaTime;
             }
-            else if (score_spawn > 45)
-            {
-                enemy_GameObject.GetComponent<Rigidbody2D>().velocity =
-                -_Spawn_Direction * score_spawn * Time.deltaTime * 10; 
-            }
-            else if (score_spawn > 30 && score_spawn < 45)
-            {
-                enemy_GameObject.GetComponent<Rigidbody2D>().velocity =
-                -_Spawn_Direction * score_spawn * Time.deltaTime * 4; 
-            }
-            else if (score_spawn < 30 && score_spawn > 15 )
-            {
-                enemy_GameObject.GetComponent<Rigidbody2D>().velocity =
-                -_Spawn_Direction * score_spawn * Time.deltaTime * 2; 
-            }
-            else if (score_spawn > 5 && score_spawn < 15)
+            // else if (score_spawn > 45)
+            // {
+            //     enemy_GameObject.GetComponent<Rigidbody2D>().velocity =
+            //     -_Spawn_Direction * score_spawn * Time.deltaTime * 10; 
+            // }
+            // else if (score_spawn > 30 && score_spawn < 45)
+            // {
+            //     enemy_GameObject.GetComponent<Rigidbody2D>().velocity =
+            //     -_Spawn_Direction * score_spawn * Time.deltaTime * 4; 
+            // }
+            // else if (score_spawn < 30 && score_spawn > 15 )
+            // {
+            //     enemy_GameObject.GetComponent<Rigidbody2D>().velocity =
+            //     -_Spawn_Direction * score_spawn * Time.deltaTime * 2; 
+            // }
+            else if (score_spawn > 5)
             {
                 enemy_GameObject.GetComponent<Rigidbody2D>().velocity =
                 -_Spawn_Direction * score_spawn * Time.deltaTime; 
             }
+            print(score_spawn * Time.deltaTime);
 
             //Timer reset
             _Timer_Spawn = 0;
         }
         //Timer not enough
-        else if (_Timer_Spawn < 2)
+        else if (_Timer_Spawn < 1-(score_spawn/(score_spawn+10)))
         {
             _Timer_Spawn += 1 * Time.deltaTime;
         }
