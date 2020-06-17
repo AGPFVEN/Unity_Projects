@@ -11,6 +11,7 @@ public class EnemyScript : MonoBehaviour
         {
             GameObject.Find("Canvas").GetComponent<Interfaz>().score += 1;
             GameObject.Find("Player").GetComponent<PlayerController>().exp_Float += 0.2f;
+            // Instantiate()
             Destroy(gameObject);
         }
         else if (coll.gameObject.tag == "player")
