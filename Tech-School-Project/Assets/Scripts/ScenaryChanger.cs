@@ -66,7 +66,7 @@ public class ScenaryChanger : MonoBehaviour
                 RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezePositionX;
             }
         }
-        if (_spawn_script.score > 20 && _spawn_script.score < 40)
+        if (_spawn_script.score > 20 && _spawn_script.score < 30)
         {
             if (wallmini_under_right.position.x <= -6)
             {
@@ -80,9 +80,9 @@ public class ScenaryChanger : MonoBehaviour
                 (new Vector2(-6.5f - wallmini_under_right.position.x, -2.6f - wallmini_under_right.position.y).normalized * 250, ForceMode2D.Force);
             }
         }
-        if (_spawn_script.score >= 40)
+        if (_spawn_script.score >= 30)
         {
-
+            wall_under_right_rb.AddForce(Vector2.up.normalized * 2);
         }
     }
 }

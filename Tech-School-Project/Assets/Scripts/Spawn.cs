@@ -87,7 +87,7 @@ public class Spawn : MonoBehaviour
         _Spawn_up[1] = _Spawn_up_right;
 
         //Timer se acabo 
-        if (_Timer_Spawn >= 1-(score_spawn/(score_spawn+10))) //TODO: DEPENDER DE SCORE
+        if (_Timer_Spawn >= 1.5f * (1-(score_spawn/(score_spawn+10)))) //TODO: DEPENDER DE SCORE
         {
             //Select Spawn
             _Select_spawn_int = Random.Range(0, 2);
@@ -159,13 +159,11 @@ public class Spawn : MonoBehaviour
                 enemy_GameObject.GetComponent<Rigidbody2D>().velocity =
                 -_Spawn_Direction * score_spawn * Time.deltaTime; 
             }
-            print(score_spawn * Time.deltaTime);
-
             //Timer reset
             _Timer_Spawn = 0;
         }
         //Timer not enough
-        else if (_Timer_Spawn < 1-(score_spawn/(score_spawn+10)))
+        else if (_Timer_Spawn < 1.5f * (1-(score_spawn/(score_spawn+10))))
         {
             _Timer_Spawn += 1 * Time.deltaTime;
         }

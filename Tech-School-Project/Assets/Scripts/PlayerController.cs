@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     float jumpHeight;
 
     //Health
+    public GameObject givenhealthGameObject;
     float health;
 
     //Cannon rotation
@@ -198,12 +199,13 @@ public class PlayerController : MonoBehaviour
             disposable_level += 1;
             Instantiate(levelUp_prefab, new Vector3(this.transform.position.x  + .5f, this.transform.position.y + 1f, 0), Quaternion.Euler(0, 0, 0));
         }
-        // if (disposable_level > 0)
-        // {
-        //     if(Input.GetKey(KeyCode.Alpha1))
-        //     {
-        //     }
-        // }
+        if (disposable_level > 0)
+        {
+            if(Input.GetKey(KeyCode.Alpha1))
+            {
+                
+            }
+        }
         exp_Transform.localScale = new Vector3(exp_Float, exp_Float, 0);
 
         //Sand watch
