@@ -20,6 +20,7 @@ public class ScenaryChanger : MonoBehaviour
 
     //Setting up Score
     Interfaz _spawn_script;
+    int bola;
 
     void Start()
     {
