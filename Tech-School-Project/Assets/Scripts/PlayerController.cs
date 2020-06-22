@@ -5,7 +5,7 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
-    //Base
+    //Basement
     public LayerMask wallMask;
     Rigidbody2D rb;
     Transform cannon_Transform;
