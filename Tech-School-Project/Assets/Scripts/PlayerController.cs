@@ -6,7 +6,6 @@ using System;
 public class PlayerController : MonoBehaviour
 {
     //Basement
-    public LayerMask wallMask;
     Rigidbody2D rb;
     Transform cannon_Transform;
 
@@ -15,8 +14,8 @@ public class PlayerController : MonoBehaviour
     float watch_FireReloadL; //Esta variable hay que quitarla en cuanto tengas score
 
     //Jump
-    public float watch_Jump;
-    public float watch_Jump_bool;
+    float watch_Jump;
+    float watch_Jump_bool;
     float watch_Jump_Limit;
     public float power_Jump;
     GameObject jumped_GameObject;
@@ -24,7 +23,6 @@ public class PlayerController : MonoBehaviour
 
     //Modificable Stats
     public float[] modstats;
-    public float[] inputlevel;
     float jumpHeight;
 
     //Health

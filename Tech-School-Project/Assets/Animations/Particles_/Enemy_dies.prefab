@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4550411147537361880}
   - component: {fileID: 4550411147537361879}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: Enemy_dies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4550411147537361878}
   serializedVersion: 6
-  lengthInSec: 4
+  lengthInSec: 0.65
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -1029,33 +1029,51 @@ ParticleSystem:
       repeatInterval: 0.01
       probability: 1
   SizeModule:
-    enabled: 0
+    enabled: 1
     curve:
       serializedVersion: 2
       minMaxState: 1
-      scalar: 1
+      scalar: 0.55
       minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 0
-          outSlope: 1
+          time: 0.0026397705
+          value: 0.4858303
+          inSlope: -0.45137388
+          outSlope: -0.45137388
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.32132202
+          value: 0.34198546
+          inSlope: 0.23574844
+          outSlope: 0.23574844
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 0
+          time: 0.3734902
+          value: 0.9872749
+          inSlope: 0.5485136
+          outSlope: 0.5485136
           tangentMode: 0
           weightedMode: 0
+          inWeight: 0.119226106
+          outWeight: 1
+        - serializedVersion: 3
+          time: 0.43534976
+          value: 0
+          inSlope: -15.959944
+          outSlope: -15.959944
+          tangentMode: 34
+          weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.33333334
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
@@ -1361,7 +1379,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.93819284, g: 1, b: 0, a: 1}
+        key0: {r: 0, g: 0, b: 0, a: 1}
         key1: {r: 1, g: 0, b: 0.04357338, a: 1}
         key2: {r: 1, g: 1, b: 1, a: 1}
         key3: {r: 1, g: 1, b: 1, a: 0}
@@ -1369,7 +1387,7 @@ ParticleSystem:
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
-        ctime0: 0
+        ctime0: 25058
         ctime1: 65535
         ctime2: 65535
         ctime3: 65535

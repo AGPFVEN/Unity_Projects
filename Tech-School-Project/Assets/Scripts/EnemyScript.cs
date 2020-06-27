@@ -5,8 +5,11 @@ using UnityEngine;
 public class EnemyScript : MonoBehaviour
 {
     public ParticleSystem enemydie;
+    
     void OnCollisionEnter2D(Collision2D coll)
     {
+        ContactPoint2D contact = coll.contacts[0];
+
         if (coll.gameObject.tag == "Bullet")
         {
             GameObject.Find("Canvas").GetComponent<Interfaz>().score += 1;
@@ -19,8 +22,11 @@ public class EnemyScript : MonoBehaviour
             GameObject.Find("Canvas").GetComponent<Interfaz>().score += 1;
             GameObject.Find("Health_bar").GetComponent<Health_Controller>().health_this -= 0.2f * 0.325f;
             GameObject.Find("Player").GetComponent<PlayerController>().exp_Float += 0.2f / GameObject.Find("Player").GetComponent<PlayerController>().level;
-
             Destroy(gameObject);
         }
+
+        // void dying()
+        // {
+        // }
     }
 }
