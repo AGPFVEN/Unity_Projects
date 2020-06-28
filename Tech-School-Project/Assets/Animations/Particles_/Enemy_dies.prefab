@@ -40,7 +40,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4550411147537361878}
   serializedVersion: 6
-  lengthInSec: 0.65
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -975,7 +975,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 15
+        scalar: 20
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -1033,16 +1033,16 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 1
-      scalar: 0.55
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0.0026397705
-          value: 0.4858303
-          inSlope: -0.45137388
-          outSlope: -0.45137388
+          time: 0
+          value: 0.28854942
+          inSlope: 0.16630058
+          outSlope: 0.16630058
           tangentMode: 34
           weightedMode: 0
           inWeight: 0
@@ -1058,7 +1058,7 @@ ParticleSystem:
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 0.3734902
-          value: 0.9872749
+          value: 0.8299325
           inSlope: 0.5485136
           outSlope: 0.5485136
           tangentMode: 0
@@ -1068,8 +1068,8 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0.43534976
           value: 0
-          inSlope: -15.959944
-          outSlope: -15.959944
+          inSlope: -13.416401
+          outSlope: -13.416401
           tangentMode: 34
           weightedMode: 0
           inWeight: 0.33333334
@@ -2101,7 +2101,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 1
+          value: -0.21768428
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -2109,8 +2109,8 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.5
-          value: 0.065507114
+          time: 0.14350891
+          value: 0.004288852
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -3830,7 +3830,7 @@ ParticleSystem:
     radiusScale: 1
   SubModule:
     serializedVersion: 2
-    enabled: 0
+    enabled: 1
     subEmitters:
     - serializedVersion: 3
       emitter: {fileID: 0}

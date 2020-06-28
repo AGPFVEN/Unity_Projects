@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MovementForX : MonoBehaviour
 {
-    public SpriteRenderer circle;
+    public GameObject circle;
     void Start()
     {
         
@@ -15,11 +15,12 @@ public class MovementForX : MonoBehaviour
 
         if(hit)
         {
-            Debug.DrawLine(transform.position, Input.mousePosition, Color.green);
+            Debug.DrawLine(Input.mousePosition, transform.position, Color.green);
+            Instantiate(circle, hit.point, transform.rotation);
         }
         else
         {
-            Debug.DrawLine(transform.position, Input.mousePosition, Color.red);
+            Debug.DrawLine(Input.mousePosition, transform.position, Color.red);
         }
     }
 }

@@ -153,7 +153,6 @@ public class PlayerController : MonoBehaviour
             if (power_Jump < 3)
             {
                 power_Jump += 3 * Time.deltaTime;
-
             }
         }
         else if (!Input.GetKey(KeyCode.Space) && watch_Jump <= 0 && fireRay.transform != null)
