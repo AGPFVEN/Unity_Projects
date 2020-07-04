@@ -5,18 +5,9 @@ using UnityEngine;
 public class Spawn : MonoBehaviour
 {
     //Positions set up
-    Vector3 _Spawn_up_left;
-    Vector3 _Spawn_up_right;
-    Vector3 _Spawn_down_left;
-    Vector3 _Spawn_down_right;
-
-    //Array de Vectores
-    Vector3[] _Spawn_up;
-    Vector3[] _Spawn_down;
-
-    //Vectores solución
-    Vector3 _Spawn_select_start;
-    Vector3 _Spawn_select_final;
+    Vector3[] _Spawn_vectors;
+    Vector3 _Spawn_up_vector;
+    Vector3 _Spawn_down_vector;
 
     //Rotación
     float _Angle_Enemy;
@@ -26,6 +17,7 @@ public class Spawn : MonoBehaviour
     //Select Vector y Relojes
     int _Select_spawn_int;
     int _Select_final_int;
+    int _negative;
     float clock;
     float _Timer_Spawn;
 
@@ -36,7 +28,6 @@ public class Spawn : MonoBehaviour
     public GameObject enemyPrefab_GameObject;
     GameObject enemy_GameObject;
     Vector3 _Spawn_Direction;
-    Rigidbody2D enemy_rb;
 
     //Prefabs health giver set up
     public GameObject _healthGiver_Prefab;
@@ -45,125 +36,63 @@ public class Spawn : MonoBehaviour
     void Awake()
     {
         //Positions declare
-        _Spawn_up_left = new Vector3(-11, 8, 0);
-        _Spawn_up_right = new Vector3(11, 8, 0);
-        _Spawn_down_left = new Vector3(-11, -8, 0);
-        _Spawn_down_right = new Vector3(11, -8, 0);
-
-        //Position Array
-        _Spawn_up = new Vector3[4];
-        _Spawn_down = new Vector3[4];
+        _Spawn_vectors = new Vector3[2];
+        _Spawn_vectors[0] = new Vector3(Random.Range(-11, 12), 8, 0);
+        _Spawn_vectors[1] = new Vector3(Random.Range(-11, 12), -8, 0);
 
         //Clocks
-        clock = 0;
         _Timer_Spawn = 0;
 
+        //Select spawn
+        _negative = 1;
     }
     void FixedUpdate()
     {
         //Score
         score_spawn = GameObject.Find("Canvas").GetComponent<Interfaz>().score;
 
-        //Clock Work
-        if (clock < 360)
-        {
-            clock += 2 * Time.deltaTime;
-        }
-        else if (clock >= 360)
-        {
-            clock = 0;
-        }
-
         //Spawn Movement
-        _Spawn_up_left = new Vector3(17 * Mathf.Cos(clock), _Spawn_up_left.y, _Spawn_up_left.z);
-        _Spawn_up_right = new Vector3(-17 * Mathf.Cos(clock), _Spawn_up_left.y, _Spawn_up_left.z);
-        _Spawn_down_left = new Vector3(17 * Mathf.Cos(clock), _Spawn_down_left.y, _Spawn_down_left.z);
-        _Spawn_down_right = new Vector3(-17 * Mathf.Cos(clock), _Spawn_down_right.y, _Spawn_down_right.z);
-
-        _Spawn_up[0] = _Spawn_up_left;
-        _Spawn_up[1] = _Spawn_up_right;
-
-        _Spawn_up[0] = _Spawn_up_left;
-        _Spawn_up[1] = _Spawn_up_right;
+        _Spawn_vectors[0] = new Vector3(Random.Range(-14, 15), 8, 0);
+        _Spawn_vectors[1] = new Vector3(Random.Range(-14, 15), -8, 0);
 
         //Timer se acabo 
-        if (_Timer_Spawn >= 1.5f * (1-(score_spawn/(score_spawn+10)))) //TODO: DEPENDER DE SCORE
+        if (_Timer_Spawn >= 1.5f * (1 - (score_spawn / (score_spawn + 10))))
         {
             //Select Spawn
             _Select_spawn_int = Random.Range(0, 2);
-            _Select_final_int = Random.Range(0, 2);
 
-            if (_Select_spawn_int == 0)
-            {
-                //Define Spawn Quterion
-                _Spawn_Rotation_Vector3 = (_Spawn_down[_Select_final_int] - _Spawn_up[_Select_spawn_int]);
-                _Angle_Enemy = Mathf.Atan2(_Spawn_Rotation_Vector3.y, _Spawn_Rotation_Vector3.x) * Mathf.Rad2Deg;
-                _Spawn_Rotation = Quaternion.Euler(0f, 0f, _Angle_Enemy - 90);
+            //Define Spawn Quterion
+            _Spawn_Rotation_Vector3 = (_Spawn_vectors[Mathf.Abs(_Select_spawn_int - 1)] - _Spawn_vectors[_Select_spawn_int]);
+            _Angle_Enemy = Mathf.Atan2(_Spawn_Rotation_Vector3.y, _Spawn_Rotation_Vector3.x) * Mathf.Rad2Deg;
+            _Spawn_Rotation = Quaternion.Euler(0f, 0f, _Angle_Enemy - 90);
 
-                //Spawn
-                enemy_GameObject = Instantiate
-                (
-                    enemyPrefab_GameObject,                     //Original GameObject
-                    _Spawn_Direction = new Vector3              //Vector Direction
-                    (
-                        _Spawn_up[_Select_final_int].x - _Spawn_down[_Select_spawn_int].x,
-                        _Spawn_up[_Select_final_int].y - _Spawn_down[_Select_spawn_int].y,
-                        _Spawn_up[_Select_final_int].z - _Spawn_down[_Select_spawn_int].z
-                    ),
-                    _Spawn_Rotation                              //Quaternion Angle
-                );
-            }
-            if (_Select_spawn_int == 1)
-            {
-                //Define Spawn Quterion
-                _Spawn_Rotation_Vector3 = -(_Spawn_down[_Select_final_int] + _Spawn_up[_Select_spawn_int]);
-                _Angle_Enemy = Mathf.Atan2(_Spawn_Rotation_Vector3.y, _Spawn_Rotation_Vector3.x) * Mathf.Rad2Deg;
-                _Spawn_Rotation = Quaternion.Euler(0f, 0f, _Angle_Enemy - 90);
+            //Spawn
+            enemy_GameObject = Instantiate
+            (
+                enemyPrefab_GameObject,                     //Original GameObject
+                _Spawn_Direction =                          //Vector Direction
+                (_Spawn_vectors[Mathf.Abs(_Select_spawn_int - 1)] - _Spawn_vectors[_Select_spawn_int]),
+                _Spawn_Rotation                              //Quaternion Angle
+            );
 
-                //Spawn
-                enemy_GameObject = Instantiate
-                (
-                    enemyPrefab_GameObject,                     //Original GameObject
-                    _Spawn_Direction = new Vector3              //Vector Direction
-                    (
-                        -_Spawn_up[_Select_spawn_int].x + _Spawn_down[_Select_final_int].x,
-                        -_Spawn_up[_Select_spawn_int].y + _Spawn_down[_Select_final_int].y,
-                        -_Spawn_up[_Select_spawn_int].z + _Spawn_down[_Select_final_int].z
-                    ),
-                    _Spawn_Rotation                              //Quaternion Angle
-                );
-            }
             //Move
             if (score_spawn <= 5)
             {
                 enemy_GameObject.GetComponent<Rigidbody2D>().velocity =
                 -_Spawn_Direction * 5 * Time.deltaTime;
             }
-            // else if (score_spawn > 45)
-            // {
-            //     enemy_GameObject.GetComponent<Rigidbody2D>().velocity =
-            //     -_Spawn_Direction * score_spawn * Time.deltaTime * 10; 
-            // }
-            // else if (score_spawn > 30 && score_spawn < 45)
-            // {
-            //     enemy_GameObject.GetComponent<Rigidbody2D>().velocity =
-            //     -_Spawn_Direction * score_spawn * Time.deltaTime * 4; 
-            // }
-            // else if (score_spawn < 30 && score_spawn > 15 )
-            // {
-            //     enemy_GameObject.GetComponent<Rigidbody2D>().velocity =
-            //     -_Spawn_Direction * score_spawn * Time.deltaTime * 2; 
-            // }
             else if (score_spawn > 5)
             {
                 enemy_GameObject.GetComponent<Rigidbody2D>().velocity =
-                -_Spawn_Direction * score_spawn * Time.deltaTime; 
+                -_Spawn_Direction * score_spawn * Time.deltaTime;
             }
+
             //Timer reset
             _Timer_Spawn = 0;
         }
+
         //Timer not enough
-        else if (_Timer_Spawn < 1.5f * (1-(score_spawn/(score_spawn+10))))
+        else if (_Timer_Spawn < 1.5f * (1 - (score_spawn / (score_spawn + 10))))
         {
             _Timer_Spawn += 1 * Time.deltaTime;
         }
