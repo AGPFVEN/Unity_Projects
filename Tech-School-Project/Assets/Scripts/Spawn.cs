@@ -52,10 +52,10 @@ public class Spawn : MonoBehaviour
         score_spawn = GameObject.Find("Canvas").GetComponent<Interfaz>().score;
 
         //Spawn Movement
-        _Spawn_vectors[0] = new Vector3(Random.Range(-14, 15), 8, 0);
-        _Spawn_vectors[1] = new Vector3(Random.Range(-14, 15), -8, 0);
+        _Spawn_vectors[0] = new Vector3(Random.Range(-20, 21), 8, 0);
+        _Spawn_vectors[1] = new Vector3(Random.Range(-20, 21), -8, 0);
 
-        //Timer se acabo 
+        //Timer se acabo
         if (_Timer_Spawn >= 1.5f * (1 - (score_spawn / (score_spawn + 10))))
         {
             //Select Spawn
