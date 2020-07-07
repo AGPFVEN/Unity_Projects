@@ -20,8 +20,18 @@ public class Interfaz : MonoBehaviour
     //Player
     GameObject player_GO;
     PlayerController player_script;
+
+    //Initial ModStats values
+    float[] initial_Modstats;
     void Awake()
     {
+        //Player set up
+        player_GO = GameObject.Find("Player");
+        player_script = player_GO.GetComponent<PlayerController>();
+
+        //Initial modstats values
+        initial_Modstats = new float[player_script.modstats.Length];
+
         //Left Set Up
         score_UI = transform.GetChild(0).transform.GetChild(0).gameObject;     //Score
         exp_UI = transform.GetChild(0).transform.GetChild(1).gameObject;       //Level
@@ -30,10 +40,6 @@ public class Interfaz : MonoBehaviour
         velocity_UI = transform.GetChild(1).transform.GetChild(0).gameObject;  //Velocity
         firerate_UI = transform.GetChild(1).transform.GetChild(1).gameObject;  //Fire rate
         givehealth_UI = transform.GetChild(1).transform.GetChild(2).gameObject;//Health given
-
-        //Player set up
-        player_GO = GameObject.Find("Player");
-        player_script = player_GO.GetComponent<PlayerController>();
     }
     void Update()
     {
@@ -44,17 +50,17 @@ public class Interfaz : MonoBehaviour
         //Exp
         exp_UI.GetComponent<Text>().text = "Level: " + player_script.level.ToString();
 
-        if(GameObject.Find("Player") == null)
+        if (GameObject.Find("Player") == null)
         {
             SceneManager.LoadScene("EndGame");
         }
 
         ////////////////////////////L E F T/////////////////////////////////////////////////
         //Velocity 
-        velocity_UI.GetComponent<Text>().text = "Speed: x" + (player_script.modstats[0] / 5f).ToString();
+        velocity_UI.GetComponent<Text>().text = "Speed: x" + (player_script.modstats[0, 0] / 10f).ToString();
 
         //Fire rate
-        firerate_UI.GetComponent<Text>().text = "Fire Rate: " + player_script.modstats[1].ToString() + "s";
+        firerate_UI.GetComponent<Text>().text = "Fire Rate: " + player_script.modstats[1, 0].ToString() + "s";
 
         //Give Health
         givehealth_UI.GetComponent<Text>().text = player_script.givenhealth.ToString() + " Times";

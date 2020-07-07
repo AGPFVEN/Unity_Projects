@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D jumped_rb;
 
     //Modificable Stats
-    public float[] modstats;
+    public float[,] modstats = new float[2, 2];
     float jumpHeight;
 
     //Health
@@ -59,12 +59,9 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        //Declare Arrays
-        modstats = new float[2];
-
         //Fire
         watch_fire = 0;
-        modstats[1] = 1; //timepo entre disparo
+        modstats[1, 0] = 1; //timepo entre disparo
 
         //Basic Stuff
         rb = GetComponent<Rigidbody2D>();
@@ -76,7 +73,7 @@ public class PlayerController : MonoBehaviour
         watch_FireReloadL = 1; //Esta variable hay que quitarla en cuanto tengas score
 
         //Modificable Stats
-        modstats[0] = 10f; //Speed
+        modstats[0, 0] = 10f; //Speed
         jumpHeight = 2f;
 
         //Mira set up
@@ -90,6 +87,16 @@ public class PlayerController : MonoBehaviour
 
         //Give health
         givenhealth = 0;
+
+        //Fill second dimension of array poeeubKBFJAHBJDBFSBAFHSKJFBASHJKDFBASKJFHBASDKJFBHSAKJFB
+
+        foreach (float i in modstats)
+        {
+            // if( i % 2 != 0)
+            // {
+            //     i = modstats[i - 1, ];
+            // }
+        }
     }
     void Update()
     {
@@ -108,7 +115,7 @@ public class PlayerController : MonoBehaviour
 
         //Horizontal movement
         float hInput = Input.GetAxis("Horizontal");
-        rb.AddForce(new Vector2(hInput * modstats[0], 0));
+        rb.AddForce(new Vector2(hInput * modstats[0, 0], 0));
 
         //Cannon rotation
         lookDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
@@ -122,7 +129,7 @@ public class PlayerController : MonoBehaviour
             {
                 Fire(cannon_Transform_Top, lookDirection.normalized, Quaternion.Euler(0f, 0f, lookAngle - 90f), bullet_Gameobject);
                 rb.AddForce(-lookDirection.normalized * 3, ForceMode2D.Impulse);
-                watch_fire = modstats[1];
+                watch_fire = modstats[1, 0];
             }
         }
         if (watch_fire > 0)
@@ -187,6 +194,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+
         //EXP////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //////////Gestiona variables
         if (exp_Float >= 1)
@@ -200,7 +208,8 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Alpha1))
             {
-
+                disposable_level--;
+                modstats[0, 0] *= 1.5f;
             }
         }
         exp_Transform.localScale = new Vector3(exp_Float, exp_Float, 0);
