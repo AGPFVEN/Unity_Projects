@@ -88,14 +88,10 @@ public class PlayerController : MonoBehaviour
         //Give health
         givenhealth = 0;
 
-        //Fill second dimension of array poeeubKBFJAHBJDBFSBAFHSKJFBASHJKDFBASKJFHBASDKJFBHSAKJFB
-
-        foreach (float i in modstats)
+        //Fill second dimension of array
+        for (int i = 0; i < modstats.GetLength(0); i++)
         {
-            // if( i % 2 != 0)
-            // {
-            //     i = modstats[i - 1, ];
-            // }
+            modstats[i, 1] = modstats[i, 0];
         }
     }
     void Update()
@@ -207,11 +203,13 @@ public class PlayerController : MonoBehaviour
 
         if (disposable_level > 0)
         {
-            if (Input.GetKey(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 disposable_level--;
                 modstats[0, 0] *= 1.5f;
             }
+
+
         }
         exp_Transform.localScale = new Vector3(exp_Float, exp_Float, 0);
 
