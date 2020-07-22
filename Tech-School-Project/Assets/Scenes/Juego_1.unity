@@ -990,14 +990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0588e90b676ca2943ab498f9054b0504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallMask:
-    serializedVersion: 2
-    m_Bits: 0
-  watch_Jump: 0
-  watch_Jump_bool: 0
   power_Jump: 0
-  modstats: []
-  inputlevel: []
   givenhealthGameObject: {fileID: 5003037237780791257, guid: 707a5a3ead9f2d748918db88cdbe66c4,
     type: 3}
   bullet_Gameobject: {fileID: 1551608104427375577, guid: 93b7eafeeeef98b4081bd4758e93b5d5,
@@ -1081,7 +1074,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 18.3, y: 10.8}
+  m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.563
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1396,7 +1389,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 20.1, y: 10.8}
+  m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0
   m_SpriteTileMode: 1
   m_WasSpriteAssigned: 1
@@ -1651,7 +1644,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 0.25, y: 1.0104845}
+  m_Size: {x: 0.25, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
