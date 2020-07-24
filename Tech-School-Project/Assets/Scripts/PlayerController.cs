@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
         lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
         cannon_Transform.rotation = Quaternion.Euler(0f, 0f, lookAngle + 90f);
 
-        //Fire
+        //Fire   improve fireeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
         if (Input.GetMouseButton(0))
         {
             if (watch_fire <= 0)
