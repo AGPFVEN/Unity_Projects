@@ -203,13 +203,27 @@ public class PlayerController : MonoBehaviour
 
         if (disposable_level > 0)
         {
+            //Improve speed
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 disposable_level--;
                 modstats[0, 0] *= 1.5f;
             }
 
+            //Improve fire rate
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                disposable_level--;
+                if (modstats[1, 0] > 0.1f)
+                {
+                    modstats[1, 0] -= modstats[1, 1] / 10;
+                }
+            }
+        }
 
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            disposable_level++;
         }
         exp_Transform.localScale = new Vector3(exp_Float, exp_Float, 0);
 
