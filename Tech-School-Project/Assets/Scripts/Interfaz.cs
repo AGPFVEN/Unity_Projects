@@ -57,12 +57,12 @@ public class Interfaz : MonoBehaviour
 
         ////////////////////////////L E F T/////////////////////////////////////////////////
         //Velocity 
-        velocity_UI.GetComponent<Text>().text = "Speed: x" + (player_script.modstats[0, 0] / player_script.modstats[0, 1]).ToString();
+        velocity_UI.GetComponent<Text>().text = "Speed: x" + (player_script.modstats[0, 0] / player_script.modstats[0, 1]).ToString("F2");
 
         //Fire rate
         firerate_UI.GetComponent<Text>().text = "Fire Rate: " + player_script.modstats[1, 0].ToString("F2") + "s";
 
         //Give Health
-        givehealth_UI.GetComponent<Text>().text = player_script.givenhealth.ToString() + " Times";
+        givehealth_UI.GetComponent<Text>().text = player_script.givenhealth.ToString("F2") + " Times";
     }
 }
