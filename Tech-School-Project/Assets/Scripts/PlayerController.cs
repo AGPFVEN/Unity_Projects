@@ -9,21 +9,14 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     Transform cannon_Transform;
 
-    //Fire
-    float watch_FireReload;
-    float watch_FireReloadL; //Esta variable hay que quitarla en cuanto tengas score
-
     //Jump
     float watch_Jump;
-    float watch_Jump_bool;
-    float watch_Jump_Limit;
     public float power_Jump;
     GameObject jumped_GameObject;
     Rigidbody2D jumped_rb;
 
     //Modificable Stats
     public float[,] modstats = new float[2, 2];
-    float jumpHeight;
 
     //Health
     public GameObject givenhealthGameObject;
@@ -57,8 +50,17 @@ public class PlayerController : MonoBehaviour
     //Give Health
     public float givenhealth;
 
+    //Bend
+    bool bended;
+    public Animator player_animator;
+
     void Start()
     {
+        //bend
+        bended = false;
+        player_animator = gameObject.GetComponent<Animator>();
+        player_animator.SetBool("bended", bended);
+
         //Fire
         watch_fire = 0;
         modstats[1, 0] = 1; //timepo entre disparo
@@ -68,13 +70,8 @@ public class PlayerController : MonoBehaviour
         cannon_Transform = transform.GetChild(0);
         cannon_Transform_Top = transform.GetChild(0).GetChild(0);
 
-        //Reload
-        watch_FireReload = 0;
-        watch_FireReloadL = 1; //Esta variable hay que quitarla en cuanto tengas score
-
         //Modificable Stats
         modstats[0, 0] = 10f; //Speed
-        jumpHeight = 2f;
 
         //Mira set up
         mira_Gameobject = transform.GetChild(1).gameObject;
@@ -118,15 +115,27 @@ public class PlayerController : MonoBehaviour
         lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
         cannon_Transform.rotation = Quaternion.Euler(0f, 0f, lookAngle + 90f);
 
-        //Fire   improve fireeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-        if (Input.GetMouseButton(0))
+        //Bend
+        if (Input.GetKeyDown(KeyCode.C))
         {
-            if (watch_fire <= 0)
+            bended = !bended;
+        }
+        if (bended == true)
+        {
+            //Fire + Fire improvement
+            if (Input.GetMouseButton(0))
             {
-                Fire(cannon_Transform_Top, lookDirection.normalized, Quaternion.Euler(0f, 0f, lookAngle - 90f), bullet_Gameobject);
-                rb.AddForce(-lookDirection.normalized * 3, ForceMode2D.Impulse);
-                watch_fire = modstats[1, 0];
+                if (watch_fire <= 0)
+                {
+                    Fire(cannon_Transform_Top, lookDirection.normalized, Quaternion.Euler(0f, 0f, lookAngle - 90f), bullet_Gameobject);
+                    rb.AddForce(-lookDirection.normalized * 3 * watch_fire, ForceMode2D.Impulse);
+                    watch_fire = modstats[1, 0];
+                }
             }
+        }
+        else
+        {
+            player_animator.Play("Bend_down");
         }
         if (watch_fire > 0)
         {
@@ -191,8 +200,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        //EXP////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //////////Gestiona variables
+        //EXP//////////////////////////////////////////////////////////////////////////////////////////////
         if (exp_Float >= 1)
         {
             exp_Float = 0;
@@ -211,13 +219,20 @@ public class PlayerController : MonoBehaviour
             }
 
             //Improve fire rate
-            if (Input.GetKeyDown(KeyCode.Alpha2))
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 disposable_level--;
                 if (modstats[1, 0] > 0.1f)
                 {
                     modstats[1, 0] -= modstats[1, 1] / 10;
                 }
+            }
+
+            //Give helath
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                disposable_level--;
+                Instantiate(givenhealthGameObject);
             }
         }
 

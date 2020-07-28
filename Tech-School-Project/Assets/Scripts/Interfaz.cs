@@ -63,6 +63,6 @@ public class Interfaz : MonoBehaviour
         firerate_UI.GetComponent<Text>().text = "Fire Rate: " + player_script.modstats[1, 0].ToString("F2") + "s";
 
         //Give Health
-        givehealth_UI.GetComponent<Text>().text = player_script.givenhealth.ToString("F2") + " Times";
+        givehealth_UI.GetComponent<Text>().text = player_script.givenhealth.ToString() + " Times";
     }
 }

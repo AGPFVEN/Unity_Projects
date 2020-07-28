@@ -17,9 +17,6 @@ public class EndGame : MonoBehaviour
     string[] usernames;
     int[] userscores;
 
-    //Contador
-    int count;
-
     //booleano controlador
     public bool firstdone;
 
@@ -27,9 +24,6 @@ public class EndGame : MonoBehaviour
     {
         //First of all
         firstdone = false;
-
-        //Contador
-        count = 1;
 
         //Menumanager
         menuManager = GameObject.FindWithTag("SceneManager_tag").GetComponent<MenuManager>();

@@ -6,7 +6,6 @@ public class BulletController : MonoBehaviour
 {
     float bTLimit = 10f;
     float bTCollider = 100000000000;
-    float bulletSpeed = 20f;
     Collider2D aCollider;
 
     void Start()

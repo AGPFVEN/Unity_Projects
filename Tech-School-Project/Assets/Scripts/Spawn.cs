@@ -17,7 +17,6 @@ public class Spawn : MonoBehaviour
     //Select Vector y Relojes
     int _Select_spawn_int;
     int _Select_final_int;
-    int _negative;
     float clock;
     float _Timer_Spawn;
 
@@ -42,9 +41,6 @@ public class Spawn : MonoBehaviour
 
         //Clocks
         _Timer_Spawn = 0;
-
-        //Select spawn
-        _negative = 1;
     }
     void FixedUpdate()
     {
