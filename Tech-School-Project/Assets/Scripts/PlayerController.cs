@@ -52,14 +52,13 @@ public class PlayerController : MonoBehaviour
 
     //Bend
     bool bended;
-    public Animator player_animator;
+    float player_scale_y;
 
     void Start()
     {
         //bend
         bended = false;
-        player_animator = gameObject.GetComponent<Animator>();
-        player_animator.SetBool("bended", bended);
+        player_scale_y = gameObject.GetComponent<Transform>().localScale.y;
 
         //Fire
         watch_fire = 0;
@@ -96,16 +95,6 @@ public class PlayerController : MonoBehaviour
         //Health
         health = GameObject.Find("Health_bar").GetComponent<Health_Controller>().health_this;
 
-        //Disposable level
-        if (disposable_level > 0)
-        {
-            if (Input.GetKeyDown(KeyCode.V))
-            {
-                //disposable level
-                disposable_level -= 1;
-            }
-        }
-
         //Horizontal movement
         float hInput = Input.GetAxis("Horizontal");
         rb.AddForce(new Vector2(hInput * modstats[0, 0], 0));
@@ -119,6 +108,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C))
         {
             bended = !bended;
+            gameObject.GetComponent<Transform>().localScale = new Vector3(1, Mathf.Abs(gameObject.GetComponent<Transform>().localScale.y - 1.5f), 1);
         }
         if (bended == true)
         {
@@ -132,10 +122,6 @@ public class PlayerController : MonoBehaviour
                     watch_fire = modstats[1, 0];
                 }
             }
-        }
-        else
-        {
-            player_animator.Play("Bend_down");
         }
         if (watch_fire > 0)
         {
