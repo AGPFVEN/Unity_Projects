@@ -307,6 +307,7 @@ Assets\Scripts\Backend\ThreadManager.cs
 Assets\Scripts\Backend\TutorialUIManager.cs
 Assets\Scripts\BulletController.cs
 Assets\Scripts\ButtonScript.cs
+Assets\Scripts\CoinController.cs
 Assets\Scripts\EndGame.cs
 Assets\Scripts\EnemyScript.cs
 Assets\Scripts\GainHealth.cs

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 public class Interfaz : MonoBehaviour
 {
     //This Script
-    public int score;
+    public float score;
 
     //This UI Right
     GameObject score_UI;
@@ -52,6 +53,10 @@ public class Interfaz : MonoBehaviour
 
         if (GameObject.Find("Player") == null)
         {
+            //WEB UPLOAD
+            StartCoroutine(Upload());
+
+            //change scene
             SceneManager.LoadScene("EndGame");
         }
 
@@ -64,5 +69,24 @@ public class Interfaz : MonoBehaviour
 
         //Give Health
         givehealth_UI.GetComponent<Text>().text = player_script.givenhealth.ToString() + " Times";
+    }
+    IEnumerator Upload()
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("myField", "myData");
+
+        using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/Backend-repository/AGPFVEN/Tech-School-Project_php/save_mark.php", form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError || www.isHttpError)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                Debug.Log("Form upload complete!");
+            }
+        }
     }
 }

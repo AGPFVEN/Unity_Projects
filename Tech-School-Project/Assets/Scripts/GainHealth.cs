@@ -10,7 +10,7 @@ public class GainHealth : MonoBehaviour
         transform.position = new Vector3(Random.Range(-11.5f, 11.5f), Random.Range(-5f, 6f), 0);
         player_script = GameObject.Find("Player").GetComponent<PlayerController>();
     }
-    void OnCollisionEnter2D(Collision2D coll)
+    void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.gameObject.tag == "Bullet")
         {

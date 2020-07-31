@@ -7,12 +7,12 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour
 {
     //Score (this try)
-    public int score_text;
+    public float score_text;
     public string username;
     public int count;
 
     //Old score
-    public int score_old;
+    public float score_old;
     public string username_old;
 
     //TODO: LISTAS

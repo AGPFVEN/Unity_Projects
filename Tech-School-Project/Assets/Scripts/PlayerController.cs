@@ -50,16 +50,8 @@ public class PlayerController : MonoBehaviour
     //Give Health
     public float givenhealth;
 
-    //Bend
-    bool bended;
-    float player_scale_y;
-
     void Start()
     {
-        //bend
-        bended = false;
-        player_scale_y = gameObject.GetComponent<Transform>().localScale.y;
-
         //Fire
         watch_fire = 0;
         modstats[1, 0] = 1; //timepo entre disparo
@@ -107,10 +99,13 @@ public class PlayerController : MonoBehaviour
         //Bend
         if (Input.GetKeyDown(KeyCode.C))
         {
-            bended = !bended;
-            gameObject.GetComponent<Transform>().localScale = new Vector3(1, Mathf.Abs(gameObject.GetComponent<Transform>().localScale.y - 1.5f), 1);
+            gameObject.GetComponent<Transform>().localScale = new Vector3(gameObject.transform.localScale.x, Mathf.Abs(gameObject.GetComponent<Transform>().localScale.y - 1.5f), 1);
         }
-        if (bended == true)
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            gameObject.GetComponent<Transform>().localScale = new Vector3(Mathf.Abs(gameObject.GetComponent<Transform>().localScale.x - 1.5f), gameObject.transform.localScale.y, 1);
+        }
+        if (gameObject.transform.localScale.x == 1 && gameObject.transform.localScale.y == 1)
         {
             //Fire + Fire improvement
             if (Input.GetMouseButton(0))

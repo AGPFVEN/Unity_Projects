@@ -19,7 +19,7 @@ public class ScenaryChanger : MonoBehaviour
     Rigidbody2D wall_up_rb;
 
     //Setting up Score
-    Interfaz _spawn_script;
+    Interfaz _interfaz_script;
     int bola;
 
     void Start()
@@ -39,11 +39,11 @@ public class ScenaryChanger : MonoBehaviour
         wall_up_rb = GameObject.Find("Wall (5)").GetComponent<Rigidbody2D>();
 
         //Setting
-        _spawn_script = GameObject.Find("Canvas").GetComponent<Interfaz>();
+        _interfaz_script = GameObject.Find("Canvas").GetComponent<Interfaz>();
     }
     void Update()
     {
-        if (_spawn_script.score >= 10 && _spawn_script.score <= 20)
+        if (_interfaz_script.score >= 10 && _interfaz_script.score <= 20)
         {
             if (wallmini_under_left.position.x < 6f)
             {
@@ -67,7 +67,7 @@ public class ScenaryChanger : MonoBehaviour
                 RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezePositionX;
             }
         }
-        if (_spawn_script.score > 20 && _spawn_script.score < 30)
+        if (_interfaz_script.score > 20 && _interfaz_script.score < 30)
         {
             if (wallmini_under_right.position.x <= -6)
             {
@@ -81,7 +81,7 @@ public class ScenaryChanger : MonoBehaviour
                 (new Vector2(-6.5f - wallmini_under_right.position.x, -2.6f - wallmini_under_right.position.y).normalized * 250, ForceMode2D.Force);
             }
         }
-        if (_spawn_script.score >= 30)
+        if (_interfaz_script.score >= 30)
         {
             wall_under_right_rb.AddForce(Vector2.up.normalized * 2);
         }
