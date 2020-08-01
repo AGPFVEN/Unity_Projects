@@ -54,7 +54,7 @@ public class Interfaz : MonoBehaviour
         if (GameObject.Find("Player") == null)
         {
             //WEB UPLOAD
-            StartCoroutine(Upload());
+            StartCoroutine(Uploadscore());
 
             //change scene
             SceneManager.LoadScene("EndGame");
@@ -70,7 +70,7 @@ public class Interfaz : MonoBehaviour
         //Give Health
         givehealth_UI.GetComponent<Text>().text = player_script.givenhealth.ToString() + " Times";
     }
-    IEnumerator Upload()
+    IEnumerator Uploadscore()
     {
         WWWForm form = new WWWForm();
         form.AddField("myField", "myData");
