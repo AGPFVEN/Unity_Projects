@@ -11,11 +11,22 @@ public class ButtonScript : MonoBehaviour
     string originalname;
     void Awake()
     {
+        //Autofocus
+        InputField username_field = GameObject.Find("InputField").GetComponent<InputField>();
+        username_field.ActivateInputField();
+
+        //Get username
         originalname = GameObject.FindGameObjectWithTag("SceneManager_tag").GetComponent<MenuManager>().username;
     }
     void Update()
     {
         print(originalname);
+
+        //When eneter is pressed pass scene
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            buttonChangeScene1();
+        }
     }
     public void buttonChangeSceneO()
     {
