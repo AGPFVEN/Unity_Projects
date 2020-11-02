@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 public class ButtonScript : MonoBehaviour
 {
@@ -45,5 +46,25 @@ public class ButtonScript : MonoBehaviour
     public void buttonExitGame()
     {
         Application.Quit();
+    }
+    IEnumerator phpCheck()
+    {
+        string username = GameObject.Find("Canvas").transform.Find("InputField").transform.Find("Text").GetComponent<Text>().text;
+
+        using(UnityWebRequest www = UnityWebRequest.Get("http://localhost/Backend-repository/AGPFVEN/Tech-School-Project_php/save_mark.php?username=" + username))
+        {
+            yield return www.Send();
+
+            if(www.isNetworkError || www.isHttpError)
+            {
+                print(www.error);
+            }
+            else
+            {
+                print(www.downloadHandler.text);
+
+                byte[] results = www.downloadHandler.data;
+            }
+        }
     }
 }
