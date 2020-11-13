@@ -50,8 +50,9 @@ public class ButtonScript : MonoBehaviour
     IEnumerator phpCheck()
     {
         string username = GameObject.Find("Canvas").transform.Find("InputField").transform.Find("Text").GetComponent<Text>().text;
+        string password = GameObject.Find("Canvas").transform.Find("InputField(1)").transform.Find("Text").GetComponent<Text>().text;
 
-        using(UnityWebRequest www = UnityWebRequest.Get("http://localhost/Backend-repository/AGPFVEN/Tech-School-Project_php/save_mark.php?username=" + username))
+        using(UnityWebRequest www = UnityWebRequest.Get("http://localhost/Backend-repository/AGPFVEN/Tech-School-Project_php/save_mark.php?username=" + username + "?password=" + password))
         {
             yield return www.Send();
 
@@ -66,5 +67,9 @@ public class ButtonScript : MonoBehaviour
                 byte[] results = www.downloadHandler.data;
             }
         }
+    }
+    public void PhpCheck()
+    {
+        StartCoroutine(phpCheck());
     }
 }
