@@ -37,6 +37,7 @@ public class MenuManager : MonoBehaviour
         checklistdone = false;
         changedone = false;
     }
+    
     void FixedUpdate()
     {
         //UserName
