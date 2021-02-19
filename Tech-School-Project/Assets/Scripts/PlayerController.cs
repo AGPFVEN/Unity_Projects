@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         cannon_Transform_Top = transform.GetChild(0).GetChild(0);
 
         //Modificable Stats
-        modstats[0, 0] = 5f; //Speed
+        modstats[0, 0] = 2.5f; //Speed
 
         //Mira set up
         mira_Gameobject = transform.GetChild(1).gameObject;
