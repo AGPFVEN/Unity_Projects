@@ -57,7 +57,7 @@ public class ScenaryChanger : MonoBehaviour
                     (
                         6.5f - wallmini_under_left.position.x,
                         -2.6f - wallmini_under_left.position.y
-                    ).normalized * 525,
+                    ).normalized * 200,
                     ForceMode2D.Force
                 );
             }
@@ -78,7 +78,7 @@ public class ScenaryChanger : MonoBehaviour
             {
                 wallmini_under_right_rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
                 wallmini_under_right_rb.AddForce
-                (new Vector2(-6.5f - wallmini_under_right.position.x, -2.6f - wallmini_under_right.position.y).normalized * 250, ForceMode2D.Force);
+                (new Vector2(-6.2f - wallmini_under_right.position.x, -2.6f - wallmini_under_right.position.y).normalized * 200, ForceMode2D.Force);
             }
         }
         if (_interfaz_script.score >= 30)

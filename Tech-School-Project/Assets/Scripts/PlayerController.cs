@@ -192,14 +192,14 @@ public class PlayerController : MonoBehaviour
 
         if (disposable_level > 0)
         {
-            //Improve speed
+            //Improve speed (1)
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 disposable_level--;
-                modstats[0, 0] *= 1.5f;
+                modstats[0, 0] *= 1.2f;
             }
 
-            //Improve fire rate
+            //Improve fire rate (2)
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 disposable_level--;
@@ -209,7 +209,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            //Give helath
+            //Give helath (3)
             else if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 disposable_level--;

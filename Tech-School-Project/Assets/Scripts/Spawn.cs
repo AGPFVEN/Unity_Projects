@@ -52,7 +52,7 @@ public class Spawn : MonoBehaviour
         _Spawn_vectors[1] = new Vector3(Random.Range(-20, 21), -8, 0);
 
         //Timer se acabo
-        if (_Timer_Spawn >= 1.5f * (1 - (score_spawn / (score_spawn + 10))))
+        if (_Timer_Spawn >= 1.25f * (1 - (score_spawn / (score_spawn + 10))))
         {
             //Select Spawn
             _Select_spawn_int = Random.Range(0, 2);
