@@ -57,7 +57,7 @@ public class ScenaryChanger : MonoBehaviour
                     (
                         6.5f - wallmini_under_left.position.x,
                         -2.6f - wallmini_under_left.position.y
-                    ).normalized * 200,
+                    ).normalized * 100,
                     ForceMode2D.Force
                 );
             }
