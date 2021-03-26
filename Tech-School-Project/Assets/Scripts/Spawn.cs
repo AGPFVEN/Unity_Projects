@@ -65,10 +65,10 @@ public class Spawn : MonoBehaviour
             //Spawn
             enemy_GameObject = Instantiate
             (
-                enemyPrefab_GameObject,                     //Original GameObject
-                _Spawn_Direction =                          //Vector Direction
+                enemyPrefab_GameObject,  //Original GameObject
+                _Spawn_Direction =       //Vector Direction
                 (_Spawn_vectors[Mathf.Abs(_Select_spawn_int - 1)] - _Spawn_vectors[_Select_spawn_int]),
-                _Spawn_Rotation                              //Quaternion Angle
+                _Spawn_Rotation          //Quaternion Angle
             );
 
             //Move
