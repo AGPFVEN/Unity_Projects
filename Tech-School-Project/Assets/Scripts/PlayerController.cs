@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     //Basement
     Rigidbody2D rb;
-    Transform cannon_Transform;
+    new Vector3 standard_size;
 
     //Jump
     float watch_Jump;
@@ -26,7 +26,8 @@ public class PlayerController : MonoBehaviour
     Vector2 lookDirection;
     float lookAngle;
 
-    //Cannon top
+    //Cannon transforms
+    Transform cannon_Transform;
     Transform cannon_Transform_Top;
 
     //Fire
@@ -50,8 +51,12 @@ public class PlayerController : MonoBehaviour
     //Give Health
     public float givenhealth;
 
+
     void Start()
     {
+        //Basement
+        standard_size = transform.localScale;
+
         //Fire
         watch_fire = 0;
         modstats[1, 0] = 1; //timepo entre disparo
@@ -81,6 +86,7 @@ public class PlayerController : MonoBehaviour
         {
             modstats[i, 1] = modstats[i, 0];
         }
+
     }
     void Update()
     {
@@ -99,25 +105,26 @@ public class PlayerController : MonoBehaviour
         //Bend
         if (Input.GetKeyDown(KeyCode.C))
         {
-            gameObject.GetComponent<Transform>().localScale = new Vector3(gameObject.transform.localScale.x, Mathf.Abs(gameObject.GetComponent<Transform>().localScale.y - 1.5f), 1);
+            gameObject.GetComponent<Transform>().localScale = 
+            new Vector3(standard_size.x, Mathf.Abs(gameObject.GetComponent<Transform>().localScale.y - 1.5f), 1);
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-            gameObject.GetComponent<Transform>().localScale = new Vector3(Mathf.Abs(gameObject.GetComponent<Transform>().localScale.x - 1.5f), gameObject.transform.localScale.y, 1);
+            gameObject.GetComponent<Transform>().localScale = 
+            new Vector3(Mathf.Abs(gameObject.GetComponent<Transform>().localScale.x - 1.5f), standard_size.y, 1);
         }
-        if (gameObject.transform.localScale.x == 1 && gameObject.transform.localScale.y == 1)
+
+        //Fire + Fire improvement
+        if (Input.GetMouseButton(0) && gameObject.transform.localScale.x == 1 && gameObject.transform.localScale.y == 1)
         {
-            //Fire + Fire improvement
-            if (Input.GetMouseButton(0))
+            if (watch_fire <= 0)
             {
-                if (watch_fire <= 0)
-                {
-                    Fire(cannon_Transform_Top, lookDirection.normalized, Quaternion.Euler(0f, 0f, lookAngle - 90f), bullet_Gameobject);
-                    rb.AddForce(-lookDirection.normalized * 3 * watch_fire, ForceMode2D.Impulse);
-                    watch_fire = modstats[1, 0];
-                }
+                Fire(cannon_Transform_Top, lookDirection.normalized, Quaternion.Euler(0f, 0f, lookAngle - 90f), bullet_Gameobject);
+                rb.AddForce(-lookDirection.normalized * 3 * watch_fire, ForceMode2D.Impulse);
+                watch_fire = modstats[1, 0];
             }
         }
+        
         if (watch_fire > 0)
         {
             watch_fire -= 1 * Time.deltaTime;
@@ -209,7 +216,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            //Give helath (3)
+            //Give health (3)
             else if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 disposable_level--;
@@ -219,7 +226,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.L))
         {
-            disposable_level++;
+            exp_Float = 1;
+            
         }
         exp_Transform.localScale = new Vector3(exp_Float, exp_Float, 0);
 

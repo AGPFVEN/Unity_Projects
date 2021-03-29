@@ -69,6 +69,11 @@ public class Interfaz : MonoBehaviour
 
         //Give Health
         givehealth_UI.GetComponent<Text>().text = player_script.givenhealth.ToString() + " Times";
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            score++; 
+        }
     }
     IEnumerator Uploadscore()
     {
