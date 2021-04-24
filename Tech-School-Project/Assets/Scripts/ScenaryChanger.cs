@@ -20,7 +20,6 @@ public class ScenaryChanger : MonoBehaviour
 
     //Setting up Score
     Interfaz _interfaz_script;
-    int bola;
 
     void Start()
     {
@@ -41,14 +40,14 @@ public class ScenaryChanger : MonoBehaviour
         //Setting
         _interfaz_script = GameObject.Find("Canvas").GetComponent<Interfaz>();
     }
+
     void Update()
     {
         if (_interfaz_script.score >= 10 && _interfaz_script.score <= 20)
         {
             if (wallmini_under_left.position.x < 6f)
             {
-                wallmini_under_left_rb.constraints =
-                RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
+                wallmini_under_left_rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
 
                 // wallmini_under_left.rotation *= Quaternion.Euler(0, 0, -45);
                 wallmini_under_left_rb.AddForce
