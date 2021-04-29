@@ -10,6 +10,7 @@ public class ScenaryChanger : MonoBehaviour
     Transform wall_under_left;
     Transform wall_under_right;
     Transform wall_up;
+    Transform wall_down_main;
 
     //Set up walls (Rigidbodies)
     Rigidbody2D wallmini_under_left_rb;
@@ -21,7 +22,7 @@ public class ScenaryChanger : MonoBehaviour
     //Setting up Score
     Interfaz _interfaz_script;
 
-    void Start()
+    void Awake()
     {
         //Setting up walls (transforms)
         wallmini_under_left = GameObject.Find("Wall (3)").GetComponent<Transform>();
@@ -29,6 +30,7 @@ public class ScenaryChanger : MonoBehaviour
         wall_under_left = GameObject.Find("Wall").GetComponent<Transform>();
         wall_under_right = GameObject.Find("Wall (1)").GetComponent<Transform>();
         wall_up = GameObject.Find("Wall (5)").GetComponent<Transform>();
+        wall_down_main = GameObject.Find("Wall (7)").GetComponent<Transform>();
 
         //Setting up walls (rigidbodies)
         wallmini_under_left_rb = GameObject.Find("Wall (3)").GetComponent<Rigidbody2D>();
@@ -39,10 +41,15 @@ public class ScenaryChanger : MonoBehaviour
 
         //Setting
         _interfaz_script = GameObject.Find("Canvas").GetComponent<Interfaz>();
+
+        //Set up ground floor
+        wall_down_main.localScale = new Vector3(1, 0.05f, 1);
     }
 
-    void Update()
+    void FixedUpdate()
     {
+        wall_down_main.localScale = new Vector3(transform.localScale.x + Time.timeScale, transform.localScale.y, transform.localScale.z);
+
         if (_interfaz_script.score >= 10 && _interfaz_script.score <= 20)
         {
             if (wallmini_under_left.position.x < 6f)
@@ -66,6 +73,7 @@ public class ScenaryChanger : MonoBehaviour
                 RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezePositionX;
             }
         }
+
         if (_interfaz_script.score > 20 && _interfaz_script.score < 30)
         {
             if (wallmini_under_right.position.x <= -6)
@@ -80,6 +88,7 @@ public class ScenaryChanger : MonoBehaviour
                 (new Vector2(-6.2f - wallmini_under_right.position.x, -2.6f - wallmini_under_right.position.y).normalized * 200, ForceMode2D.Force);
             }
         }
+
         if (_interfaz_script.score >= 30)
         {
             wall_under_right_rb.AddForce(Vector2.up.normalized * 2);
