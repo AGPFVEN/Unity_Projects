@@ -10,7 +10,7 @@ public class ScenaryChanger : MonoBehaviour
     Transform wall_under_left;
     Transform wall_under_right;
     Transform wall_up;
-    Transform wall_down_main;
+    Transform wall_mid;
 
     //Set up walls (Rigidbodies)
     Rigidbody2D wallmini_under_left_rb;
@@ -30,7 +30,7 @@ public class ScenaryChanger : MonoBehaviour
         wall_under_left = GameObject.Find("Wall").GetComponent<Transform>();
         wall_under_right = GameObject.Find("Wall (1)").GetComponent<Transform>();
         wall_up = GameObject.Find("Wall (5)").GetComponent<Transform>();
-        wall_down_main = GameObject.Find("Wall (7)").GetComponent<Transform>();
+        wall_mid = GameObject.Find("Wall (7)").GetComponent<Transform>();
 
         //Setting up walls (rigidbodies)
         wallmini_under_left_rb = GameObject.Find("Wall (3)").GetComponent<Rigidbody2D>();
@@ -43,12 +43,12 @@ public class ScenaryChanger : MonoBehaviour
         _interfaz_script = GameObject.Find("Canvas").GetComponent<Interfaz>();
 
         //Set up ground floor
-        wall_down_main.localScale = new Vector3(1, 0.05f, 1);
+        wall_mid.localScale = new Vector3(1, 0.05f, 1);
     }
 
     void FixedUpdate()
     {
-        wall_down_main.localScale = new Vector3(transform.localScale.x + Time.timeScale, transform.localScale.y, transform.localScale.z);
+        wall_mid.localScale = new Vector3(transform.localScale.x + Time.timeScale, transform.localScale.y, transform.localScale.z);
 
         if (_interfaz_script.score >= 10 && _interfaz_script.score <= 20)
         {
